@@ -1,0 +1,72 @@
+/*  Initial Comment */
+.text-field:focused {
+	-fx-prompt-text-fill: grey;
+}
+
+.bold {
+	-fx-font-weight: bold;
+}
+
+.bolder {
+	-fx-font-weight: bolder;
+}
+
+.centered {
+	-fx-alignment: center;
+	-fx-content-display: center;
+	-fx-text-alignment: center;
+	-fx-underline: true;
+}
+
+.text-area:focused {
+	-fx-prompt-text-fill: grey;
+}
+
+.overdue {
+	-fx-text-fill: darkred;
+	-fx-font-weight: bold;
+}
+
+.due-soon {
+	-fx-text-fill: coral;
+	-fx-font-weight: bolder;
+	-fx-graphic-text-gap: 2px;
+}
+
+.standard-due {
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+} 
+
+.invalid {
+	-fx-border-color: red;
+}
+
+.done .text {
+    -fx-strikethrough: true;
+    -fx-font-weight: lighter;
+}
+
+.unsaved {
+    -fx-text-fill: red;
+}
+
+#reminder-view {
+	-fx-orientation: horizontal;
+}
+
+#popup-region {
+	-fx-background-color: oldlace;
+}
+
+#reminder-view .list-cell {
+	-fx-cell-size: 3;
+	-fx-wrap-text: true;
+}
+
+#calendar-header {
+    -fx-border-color: lightslategray;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+}

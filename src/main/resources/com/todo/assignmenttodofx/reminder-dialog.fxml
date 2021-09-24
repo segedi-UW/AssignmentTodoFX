@@ -1,0 +1,8 @@
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.VBox?>
+<?import com.todo.assignmenttodofx.TimeSpinner?>
+<VBox xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <DatePicker fx:id="datePicker" promptText="Date (mm/dd/yyyy)*"/>
+    <TimeSpinner fx:id="timeSpinner"/>
+</VBox>

@@ -1,0 +1,145 @@
+<-- 3.4.0 --> Dates, and Category load fix
+
+* Fixed Categories (both parser, saver, and indexes :| )
+* Categories can now have spaces - but cannot be blank nor
+  include commas still
+* Added dates to the patch notes
+
+<--/ 3.4.0 /-->
+
+<-- 3.3.0 --> Categories and FXML
+
+* Added categories, since that was a requested feature - if you have
+  any features in mind please let me know, and I will get back to you
+  when I implement them.
+
+* Reimplemented mnemonics because certain commands would not run
+  due to having alternate meanings when text fields were focused
+  (think for example Ctrl+A acting as a select all button for
+  text in TextArea).
+
+* Added notification for when you mute - that way if you use the
+  mnemonic you actually know if the program is muted or not.
+
+* Added a ResourceParser (that takes into account file vs jar access)
+  so resources are now scalable
+
+* Completely revamped how the scene is built - now primarily uses fxml
+  and FXMLLoader's. Much easier to spruce up the look of now, and you
+  will notice that the program is already looking cleaner.
+
+* I misspelled default in "AssignmentTodo-Default.tdo", so I
+  automatically converted it for you!
+
+Note that this automatic conversion may be removed in a couple updates,
+and after then if for some reason you have not updated till then, this
+can be easily fixed by simply importing the misspelled default file from
+your user directory. On Windows simply go to your default drive
+(usually your "C:" drive) then click "users" then your username directory, then click
+"AssignmentTodo", and it should be in there. Note that the auto conversion
+will delete the previous file if it successfully loaded the file. I will
+mention if I remove it in the patch notes, and of course feel free to contact
+me if something happens. I have tested scripts to automatically fix the save
+files and doing so would be very easy. Of course a script to rename a single
+file is not necessary.
+
+* Switched the way the patch notes are ordered so that the new stuff is on top
+  if you have not yet noticed. Also added patch note headers.
+
+Coding News:
+Switched to Intellij as my primary IDE no regrets, it is awesome (loving Vim Emulator).
+More code optimization ;)
+
+<--/ 3.3.0 /-->
+
+<-- 3.2.0 --> Log and AssignmentTodo directory
+
+* Added a log file for standard error and console input for debugging
+
+NOTE the log is cleared every time the program starts for a small
+memory footprint, so if the program crashes, send the log to me
+at aj.segedi@gmail.com BEFORE starting up the program again.
+
+* Changed default file location to be within a directory - it will
+  auto copy over don't worry
+* Massively revamped code - more efficient and easier to work with
+* Added autoNotifications and a preference for them to trigger
+
+<--/ 3.2.0 /-->
+
+<-- 3.1.2 --> UI Tweaks and Save Bug
+
+* Added labels for both the loaded file and if the project has been saved
+* Program no longer prompts for save on exit if it has been saved already
+
+* Added option to turn off automatically loading the default file, and button
+  to easily load it if wanted (see preferences and files respectively).
+
+* Changed the way that reminders are rendered to make them more readable
+  and pleasing to the eye
+
+* Fixed bug where reminders were saved with the same time as the assignment
+  was due instead of the time for the reminder
+
+<--/ 3.1.2 /-->
+
+<-- 3.0.0 --> FIRST UPDATE!
+
+Hey there! Welcome to AssignmentTodo! This is the first installation 
+where I have an about page, which you may or may not know about.
+In any case, I am very excited to be sharing with you this new installation
+with its own brand spanking new features to keep you up to date with all 
+your tasks.
+
+* New default file system (and import button in files)
+
+If you have stuff in the current default file, no need to worry,
+simply import it. There is a new default file system, which
+means that you can move your AssignmentTodo.jar anywhere you want
+to without worrying about moving the default file - in fact you
+won't even have to worry about dealing with it directly. If
+you ever do want to load it, it is in your user root directory.
+
+* Saved Preferences
+
+Little of quality of life here - tired of unselecting the military
+time option? I hear ya, so now that bit and other options are saved
+automatically - no need to keep unchecking them each time you load
+this bad boi up. It also means that you DON'T NEED TO WORRY ABOUT
+THIS PAGE POPPING UP EACH TIME YOU OPEN AssignmentTodo! That's
+right, it will only open if you download a NEW version! If you
+want to reread this page (or check version), use the about button
+in AssignmentTodo menu.
+
+* Notification Sounds (and mute button -> preference)
+* Toggleable notifications
+* Multiple different notification sounds for you to choose from
+
+* Some code cleanup and removal for the depreciated commandline
+interface (no need to mention but hey whatever)
+
+* Little of optimization
+* Implemented automatic Calendar updates and task updates 
+  (no need to close the program and reopen it on a new day).
+* Overcame two day struggle to decode wav files - turns out the fat jar builder 
+  program I have been using was corrupting the .wav files due to an option I 
+  selected. It was a ONE line fix...
+  
+* Implemented Key Accelerators (you know the ctrl+a keys etc.) they are
+  listed on the Menus
+
+<--/ 3.0.0 /-->
+
+That about concludes the patch notes!
+Hope you guys like the program, and perhaps I have worked out most of the 
+kinks in this. Let me know if you need any help, or have suggestions.
+Thanks for checking this program out, I really appreciate it!
+
+Regards,
+AJ S
+
+Feel free to contact me at
+aj.segedi@gmail.com
+262-955-5532 *
+
+*Just leave a voicemail, I will call back. Too many telemarketers.

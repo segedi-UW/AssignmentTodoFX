@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.CustomMenuItem?>
+<?import javafx.scene.control.ComboBox?>
+<?import org.controlsfx.control.CheckListView?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<BorderPane fx:controller="com.todo.assignmenttodofx.Controller"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Import" onAction="#importAssignment" accelerator="Alt+i"/>
+                <MenuItem text="Load" onAction="#promptLoad" accelerator="Alt+l"/>
+                <MenuItem text="Load Default" onAction="#loadDefault" accelerator="Alt+Shift+l"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Save" onAction="#save" accelerator="Alt+s"/>
+                <MenuItem text="Save As" onAction="#saveAs" accelerator="Alt+a"/>
+                <SeparatorMenuItem/>
+                <MenuItem fx:id="openMenuItem" text="Open Link" onAction="#openLink" disable="true" accelerator="Shortcut+o"/>
+            </Menu>
+            <Menu text="Preferences">
+                <CheckMenuItem text="Military Time" fx:id="militaryTimeCheck"/>
+                <CheckMenuItem text="Mute" fx:id="muteCheck" accelerator="Shortcut+m"/>
+                <CustomMenuItem hideOnClick="false">
+                    <content>
+                        <ComboBox fx:id="notificationSounds"/>
+                    </content>
+                </CustomMenuItem>
+                <CheckMenuItem text="Autoload Default" fx:id="autoLoadCheck"/>
+                <CheckMenuItem text="AutoNotifications" fx:id="autoNotificationCheck"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Reset Preferences" onAction="#resetPreferences"/>
+            </Menu>
+            <Menu text="AssignmentTodo">
+                <MenuItem text="Minimize to Tray" onAction="#minimizeToTray" accelerator="Shortcut+t"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Download Page" onAction="#openDownload"/>
+                <MenuItem text="Changelog" onAction="#showAbout"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <left>
+        <VBox>
+            <HBox>
+                <Label text="Loaded: ">
+                    <styleClass>
+                        bold
+                    </styleClass>
+                    <HBox.margin>
+                        <Insets left="5" top="3"/>
+                    </HBox.margin>
+                </Label>
+                <Label fx:id="loadFilename">
+                    <HBox.margin>
+                        <Insets left="5" top="3" right="5"/>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <HBox>
+                <ToolBar>
+                    <Button onAction="#newTask" text="New"/>
+                    <Button fx:id="editButton" onAction="#edit" text="Edit" disable="true"/>
+                    <Button fx:id="openButton" onAction="#openLink" text="Open" disable="true"/>
+                    <Button onAction="#save" text="Save"/>
+                </ToolBar>
+                <Label fx:id="savedText" text="saved">
+                    <HBox.margin>
+                        <Insets top="12" left="10" right="3" bottom="3"/>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <CheckListView fx:id="master" minWidth="200" VBox.vgrow="ALWAYS"/>
+            <ToolBar>
+                <Button fx:id="removeButton" text="Remove Selected" onAction="#removeSelectedTasks" disable="true"/>
+                <Button fx:id="clearButton" text="Clear" onAction="#clear" disable="true"/>
+            </ToolBar>
+        </VBox>
+    </left>
+    <center>
+        <VBox>
+            <AnchorPane>
+                <HBox AnchorPane.leftAnchor="5">
+                    <Label text="Assignment: " styleClass="bold"/>
+                    <Label fx:id="summaryText" minWidth="250"/>
+                </HBox>
+                <HBox AnchorPane.rightAnchor="5">
+                    <Label text="Due Date: " styleClass="bold"/>
+                    <Label fx:id="dueText" minWidth="150"/>
+                </HBox>
+            </AnchorPane>
+            <TextArea fx:id="descriptionArea" minHeight="100" editable="false" focusTraversable="false">
+                <VBox.margin>
+                    <Insets left="5" right="5"/>
+                </VBox.margin>
+            </TextArea>
+            <HBox maxHeight="200">
+                <VBox.margin>
+                    <Insets left="5" bottom="3"/>
+                </VBox.margin>
+                <CheckListView fx:id="reminders" orientation="HORIZONTAL" HBox.hgrow="ALWAYS"/>
+                <ToolBar orientation="VERTICAL" minHeight="70" minWidth="80">
+                    <Button text="Remind" onAction="#newReminder"/>
+                    <Button fx:id="cancelReminderButton" text="Cancel" onAction="#removeSelectedReminders" disable="true"/>
+                </ToolBar>
+            </HBox>
+            <HBox fx:id="calendar"/>
+        </VBox>
+    </center>
+</BorderPane>

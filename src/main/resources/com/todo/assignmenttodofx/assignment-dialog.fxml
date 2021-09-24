@@ -1,0 +1,31 @@
+<?import com.todo.assignmenttodofx.TimeSpinner?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import com.todo.assignmenttodofx.ReminderPicker?>
+<?import com.todo.assignmenttodofx.CategoryPicker?>
+<BorderPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <left>
+        <VBox>
+            <TextField fx:id="summary" promptText="Summary"/>
+            <TimeSpinner fx:id="time"/>
+            <DatePicker fx:id="datePicker"/>
+            <TextField fx:id="link" promptText="Link"/>
+            <ReminderPicker fx:id="reminder"/>
+        </VBox>
+    </left>
+    <center>
+            <TextArea fx:id="description" promptText="Description"/>
+    </center>
+    <right>
+        <VBox>
+            <Label text="Category"/>
+            <CategoryPicker fx:id="categoryPicker"/>
+            <ToolBar>
+                <Button fx:id="addCategory" text="Add" onAction="#addCategory"/>
+                <Button fx:id="removeCategory" text="Remove" onAction="#removeCategory"/>
+            </ToolBar>
+        </VBox>
+    </right>
+</BorderPane>
