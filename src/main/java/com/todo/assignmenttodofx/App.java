@@ -14,11 +14,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class App extends Application {
 
-    public static final String VERSION = "AssignmentTodo 3.3.1";
-    public static final String DOWNLOAD_URL = "https://drive.google.com/file/d/1aB_xpSfNWAFUNKV9g9_Uc8BkH6k9DJqo/view?usp=sharing/AssignmentTodo.jar";
+    public static final String VERSION = "AssignmentTodo 3.3.2";
+    public static final String DOWNLOAD_URL = "https://segedi-UW.github.io/files/AssignmentTodo.jar";
+    public static final String DOWNLOAD_VERSION = "https://segedi-UW.github.io/files/AssignmentTodo.vrs";
+    public static final String DOWNLOAD_INSTALLER = "https://segedi-UW.github.io/files/Installer.class";
     // FIXME change the url to github page
     private static Stage main;
     private static final HashMap<String, AudioResource> notificationSounds = notificationSounds();
@@ -46,6 +49,24 @@ public class App extends Application {
                 DefaultLoader loader = new DefaultLoader(controller);
                 loader.start();
             }
+            final Parameters parameters = getParameters();
+            Map<String, String> named = parameters.getNamed();
+            String update = named.get("update");
+            if (update == null || !update.equalsIgnoreCase("false")) {
+                boolean hasUpdate = AppUpdater.hasUpdate();
+                if (hasUpdate) {
+                    UpdateAlert alert = new UpdateAlert();
+                    alert.showAndWait().ifPresent(button -> {
+                        if (button.equals(ButtonType.OK))
+                            try {
+                                System.out.println("Updating");
+                                AppUpdater.update();
+                            } catch (IOException e) {
+                                System.err.println("Failed to update the jar");
+                            }
+                    });
+                }
+                }
             if (controller.isNewInstallation()) {
                 AboutDialog about = new AboutDialog();
                 about.showAndWait();
