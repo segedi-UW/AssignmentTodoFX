@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -52,12 +53,13 @@ public class App extends Application {
             final Parameters parameters = getParameters();
             Map<String, String> named = parameters.getNamed();
             String update = named.get("update");
+            System.out.println("Update param: " + update);
             if (update == null || !update.equalsIgnoreCase("false")) {
-                boolean hasUpdate = AppUpdater.hasUpdate();
+                boolean hasUpdate = AppUpdater.hasUpdate() || (update != null && update.equalsIgnoreCase("true"));
                 if (hasUpdate) {
                     UpdateAlert alert = new UpdateAlert();
                     alert.showAndWait().ifPresent(button -> {
-                        if (button.equals(ButtonType.OK))
+                        if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE)
                             try {
                                 System.out.println("Updating");
                                 AppUpdater.update();
