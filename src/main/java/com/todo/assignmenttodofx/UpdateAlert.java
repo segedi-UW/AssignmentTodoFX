@@ -8,6 +8,7 @@ public class UpdateAlert extends Alert {
 
     public UpdateAlert() {
         super(AlertType.CONFIRMATION);
+        initOwner(App.getStage());
         setTitle("Update Available");
         setHeaderText("Update AssignmentTodo");
         setContentText("An update is available for AssignmentTodo.");

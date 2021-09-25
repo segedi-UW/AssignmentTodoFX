@@ -154,10 +154,18 @@ public class Controller {
         return !oldInstall.equals(App.VERSION);
     }
 
+    public void showError(String message) {
+        showError(new NullPointerException("No Exception"), message);
+    }
+
     public void showError(Exception e, String message) {
+        showError(e, message, null);
+    }
+
+    public void showError(Exception e, String message, String log) {
         String show = e.getMessage() + ": " + message;
         System.err.println(show);
-        ErrorAlert alert = new ErrorAlert(e, message);
+        ErrorAlert alert = new ErrorAlert(e, message, log);
         Platform.runLater(alert::showAndWait);
     }
 

@@ -53,22 +53,27 @@ public class App extends Application {
             final Parameters parameters = getParameters();
             Map<String, String> named = parameters.getNamed();
             String update = named.get("update");
+            if (update == null) update = ""; // sets to blank
             System.out.println("Update param: " + update);
-            if (update == null || !update.equalsIgnoreCase("false")) {
-                boolean hasUpdate = AppUpdater.hasUpdate() || (update != null && update.equalsIgnoreCase("true"));
-                if (hasUpdate) {
-                    UpdateAlert alert = new UpdateAlert();
-                    alert.showAndWait().ifPresent(button -> {
-                        if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE)
-                            try {
-                                System.out.println("Updating");
-                                AppUpdater.update();
-                            } catch (IOException e) {
-                                System.err.println("Failed to update the jar");
-                            }
-                    });
-                }
-                }
+            boolean forceUpdate = update.equalsIgnoreCase("true");
+            boolean noUpdate = update.equalsIgnoreCase("false");
+            boolean hasUpdate = (!noUpdate && AppUpdater.hasUpdate()) || forceUpdate;
+            boolean failedUpdate = update.equalsIgnoreCase("fail");
+            if (hasUpdate) {
+                UpdateAlert alert = new UpdateAlert();
+                alert.showAndWait().ifPresent(button -> {
+                    if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE)
+                        try {
+                            System.out.println("Updating");
+                            AppUpdater.update(); // this should kill the program
+                        } catch (IOException e) {
+                            System.err.println("Failed to update the jar");
+                        }
+                });
+            } else if (failedUpdate) {
+                String log = named.get("updateLog");
+                controller.showError(new IllegalStateException("Update Failed"), "The update process failed", log);
+            }
             if (controller.isNewInstallation()) {
                 AboutDialog about = new AboutDialog();
                 about.showAndWait();
@@ -82,13 +87,13 @@ public class App extends Application {
     }
 
     public static void addStyleSheet(Scene scene, String resource) {
-            URL url = App.class.getResource(resource);
-            if (url != null) {
-                final String sheet = url.toExternalForm();
-                scene.getStylesheets().add(sheet);
-            } else {
-                System.out.println("Could not add sheet " + resource);
-            }
+        URL url = App.class.getResource(resource);
+        if (url != null) {
+            final String sheet = url.toExternalForm();
+            scene.getStylesheets().add(sheet);
+        } else {
+            System.out.println("Could not add sheet " + resource);
+        }
     }
 
     public static void addStyleSheet(Scene scene) {
