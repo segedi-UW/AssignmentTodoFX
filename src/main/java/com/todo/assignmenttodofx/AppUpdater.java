@@ -40,7 +40,7 @@ public class AppUpdater {
                 if (stream != null) {
                     Files.copy(stream, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     String cmd = "java " + " Installer " + App.DOWNLOAD_URL;
-                    Process p = Runtime.getRuntime().exec(cmd);
+                    Runtime.getRuntime().exec(cmd);
                     Platform.exit();
                 } else System.err.println("Error reading class file");
             } catch (Exception e) {
