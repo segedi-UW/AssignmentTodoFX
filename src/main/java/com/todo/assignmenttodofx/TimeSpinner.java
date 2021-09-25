@@ -26,15 +26,16 @@ public class TimeSpinner extends HBox implements InvalidationListener {
 
     public TimeSpinner(int initHour, int initMin) {
         super();
-        hours = createSpinner(0, 23, initHour);
-        minutes = createSpinner(0, 59, initMin);
+        hours = createSpinner(23, initHour);
+        minutes = createSpinner(59, initMin);
         top = new SimpleStringProperty();
         bottom = new SimpleStringProperty();
         setConverter(null);
         setContent();
     }
 
-    private Spinner<Integer> createSpinner(int min, int max, int initial) {
+    private Spinner<Integer> createSpinner(int max, int initial) {
+        final int min = 0;
         IntegerSpinnerValueFactory factory = new IntegerSpinnerValueFactory(min, max, initial);
         factory.setWrapAround(true);
         Spinner<Integer> spinner = new Spinner<>(factory);
@@ -98,7 +99,7 @@ public class TimeSpinner extends HBox implements InvalidationListener {
     }
 
     public interface Converter {
-        public void convert(StringProperty top, StringProperty bottom);
+       void convert(StringProperty top, StringProperty bottom);
     }
 
     @Override

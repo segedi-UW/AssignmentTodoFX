@@ -5,15 +5,6 @@ import java.util.Calendar;
 
 public class CalendarSetter {
 
-    public static void setDate(Calendar calendar, Calendar date) {
-        final int day = Calendar.DAY_OF_MONTH;
-        final int month = Calendar.MONTH;
-        final int year = Calendar.YEAR;
-        calendar.set(day, date.get(day));
-        calendar.set(month, date.get(month));
-        calendar.set(year, date.get(year));
-    }
-
     public static void setTime(Calendar calendar, Calendar time) {
         final int hour = Calendar.HOUR_OF_DAY;
         final int minute = Calendar.MINUTE;

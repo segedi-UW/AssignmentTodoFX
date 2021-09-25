@@ -6,8 +6,6 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.control.ToolBar;
 
-import java.util.Calendar;
-
 public class ReminderPicker extends ToolBar {
 
     private final BooleanProperty isSelected;
@@ -39,18 +37,6 @@ public class ReminderPicker extends ToolBar {
     private void setIntractable(CheckBox remind) {
         boolean isUnchecked = !remind.isSelected();
         time.setDisable(isUnchecked);
-    }
-
-    public BooleanProperty isSelectedProperty() {
-        return isSelected;
-    }
-
-    public Calendar getCalendar(Calendar due) {
-        Calendar dueDate = (Calendar) due.clone();
-        dueDate.add(Calendar.HOUR_OF_DAY, -1 * time.getHour());
-        dueDate.add(Calendar.MINUTE, -1 * time.getMinute());
-        dueDate.set(Calendar.SECOND, 0);
-        return dueDate;
     }
 
     public boolean isSelected() {

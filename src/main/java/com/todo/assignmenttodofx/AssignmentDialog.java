@@ -17,7 +17,6 @@ public class AssignmentDialog extends Dialog<Assignment> {
     @FXML private TextField summary;
     @FXML private DatePicker datePicker;
     @FXML private TimeSpinner time;
-    @FXML private Button addCategory;
     @FXML private Button removeCategory;
     @FXML private CategoryPicker categoryPicker;
     @FXML private TextField link;

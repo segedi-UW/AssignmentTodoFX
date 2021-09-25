@@ -3,7 +3,7 @@ package com.todo.assignmenttodofx;
 public class AssignmentPrinter {
 
     public static String getDisplayText(Assignment assignment, Display display) {
-        String text = "";
+        String text;
         switch (display) {
             case FULL:
                 text = assignment.toString();

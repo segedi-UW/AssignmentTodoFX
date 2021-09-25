@@ -85,10 +85,7 @@ public class Controller {
             Notification notification = new Notification(Notification.Type.INFORMATIONAL, (newVal ? "Muted" : "Unmuted"));
             notification.setHideAfterSeconds(1.0);
             notification.show();
-            if (newVal != null)
-                Preference.MUTE.put(newVal);
-            else
-                System.err.println("MuteCheck set to null!");
+            Preference.MUTE.put(newVal);
         });
         militaryTimeCheck.setSelected(isMilitary);
         militaryTimeCheck.selectedProperty().addListener((obs, oldVal, newVal) -> {
@@ -213,7 +210,7 @@ public class Controller {
             return;
         final String link = toOpen.getLink();
         if (link == null) {
-            showError(new NullPointerException("Empty Link"), "Cannot open empty link");
+            showError("Cannot open empty link");
             return;
         }
         File file = new File(link);
