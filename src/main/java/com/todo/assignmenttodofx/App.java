@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class App extends Application {
 
-    public static final String VERSION = "AssignmentTodo 3.3.2";
+    public static final String VERSION = "AssignmentTodo 3.5.0";
     public static final String DOWNLOAD_URL = "https://segedi-UW.github.io/files/AssignmentTodo.jar";
     public static final String DOWNLOAD_VERSION = "https://segedi-UW.github.io/files/AssignmentTodo.vrs";
     public static final String DOWNLOAD_INSTALLER = "https://segedi-UW.github.io/files/Installer.class";

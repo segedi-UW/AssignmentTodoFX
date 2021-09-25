@@ -1,4 +1,21 @@
-<-- 3.4.0 --> Dates, and Category load fix
+
+<-- 3.5.0 --> AutoUpdate - 9/25/2021
+
+* Added Automatic detection of updates and an automatic
+  installation process of these updates!!!
+
+* Removed the download button
+
+The main thing in the way of me implementing something like
+this in the past was lack of knowledge, and lack of a
+spot to upload - luckily GitHub has once again proven
+to be the best software possibly ever developed. I found
+out that GitHub serves websites for you for FREE, so
+thanks to that I can do stuff like this.
+
+<--/ 3.5.0 /-->
+
+<-- 3.4.0 --> Dates, and Category load fix - 9/23/2021
 
 * Fixed Categories (both parser, saver, and indexes :| )
 * Categories can now have spaces - but cannot be blank nor
