@@ -23,7 +23,6 @@ public class App extends Application {
     public static final String DOWNLOAD_URL = "https://segedi-UW.github.io/files/AssignmentTodo.jar";
     public static final String DOWNLOAD_VERSION = "https://segedi-UW.github.io/files/AssignmentTodo.vrs";
     public static final String DOWNLOAD_INSTALLER = "https://segedi-UW.github.io/files/Installer.class";
-    // FIXME change the url to github page
     private static Stage main;
     private static final HashMap<String, AudioResource> notificationSounds = notificationSounds();
 
@@ -59,6 +58,10 @@ public class App extends Application {
             boolean noUpdate = update.equalsIgnoreCase("false");
             boolean hasUpdate = (!noUpdate && AppUpdater.hasUpdate()) || forceUpdate;
             boolean failedUpdate = update.equalsIgnoreCase("fail");
+            if (failedUpdate) {
+                String log = named.get("updateLog");
+                controller.showError(new IllegalStateException("Update Failed"), "The update process failed", log);
+            }
             if (hasUpdate) {
                 UpdateAlert alert = new UpdateAlert();
                 alert.showAndWait().ifPresent(button -> {
@@ -70,9 +73,6 @@ public class App extends Application {
                             System.err.println("Failed to update the jar");
                         }
                 });
-            } else if (failedUpdate) {
-                String log = named.get("updateLog");
-                controller.showError(new IllegalStateException("Update Failed"), "The update process failed", log);
             }
             if (controller.isNewInstallation()) {
                 AboutDialog about = new AboutDialog();
