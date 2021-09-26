@@ -363,8 +363,9 @@ public class Controller {
     }
 
     @FXML
-    public void openDownload() {
-        browseInternet(App.DOWNLOAD_URL);
+    public void openWebpage() {
+        final String webPage = "https://segedi-uw.github.io/AssignmentTodofx/";
+        browseInternet(webPage);
     }
 
     @FXML

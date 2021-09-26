@@ -48,7 +48,7 @@
             <Menu text="AssignmentTodo">
                 <MenuItem text="Minimize to Tray" onAction="#minimizeToTray" accelerator="Shortcut+t"/>
                 <SeparatorMenuItem/>
-                <MenuItem text="Download Page" onAction="#openDownload"/>
+                <MenuItem text="Open Webpage" onAction="#openWebpage"/>
                 <MenuItem text="Changelog" onAction="#showAbout"/>
             </Menu>
         </MenuBar>
