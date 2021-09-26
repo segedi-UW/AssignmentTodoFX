@@ -24,14 +24,14 @@ public class App extends Application {
 
     private static String readVersion() {
         String version = LAST_STABLE_VERSION;
-        List<String> versionFile = Filer.readResource("com/todo/assignmenttodofx/AssignmentTodo.vrs");
+        List<String> versionFile = Filer.readResource("AssignmentTodo.vrs");
         if (!versionFile.isEmpty())
             version = versionFile.get(0);
         return version;
     }
 
     public static final String DOWNLOAD_URL = "https://github.com/segedi-UW/AssignmentTodofx/blob/bce3ee211e06243f3c8963093aa73bc4756774df/out/artifacts/AssignmentTodo_jar/AssignmentTodo.jar?raw=true";
-    public static final String DOWNLOAD_VERSION = "https://github.com/segedi-UW/AssignmentTodofx/raw/bce3ee211e06243f3c8963093aa73bc4756774df/out/AssignmentTodo.vrs";
+    public static final String DOWNLOAD_VERSION = "https://github.com/segedi-UW/AssignmentTodofx/raw/master/src/main/resources/com/todo/assignmenttodofx/AssignmentTodo.vrs";
     public static final String DOWNLOAD_INSTALLER = "https://github.com/segedi-UW/AssignmentTodofx/blob/bce3ee211e06243f3c8963093aa73bc4756774df/out/Installer.class?raw=true";
     private static Stage main;
     private static final HashMap<String, AudioResource> notificationSounds = notificationSounds();
