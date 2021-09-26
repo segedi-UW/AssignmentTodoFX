@@ -1,5 +1,19 @@
+<-- 3.5.2 --> QoL Changes - 9/26/2021
+
+
+* Changed the file locations that are pulled so that
+  they update directly when I change the project
+
+* Added a dialog indicating that the program is checking
+  for the online version.
+
+* Changed the version check to read from a version file
+  itself - I only need to change one file and update the
+  jar to prompt updates
+
 
 <-- 3.5.0 --> AutoUpdate - 9/25/2021
+
 
 * Added Automatic detection of updates and an automatic
   installation process of these updates!!!
@@ -13,18 +27,18 @@ to be the best software possibly ever developed. I found
 out that GitHub serves websites for you for FREE, so
 thanks to that I can do stuff like this.
 
-<--/ 3.5.0 /-->
 
 <-- 3.4.0 --> Dates, and Category load fix - 9/23/2021
+
 
 * Fixed Categories (both parser, saver, and indexes :| )
 * Categories can now have spaces - but cannot be blank nor
   include commas still
 * Added dates to the patch notes
 
-<--/ 3.4.0 /-->
 
 <-- 3.3.0 --> Categories and FXML
+
 
 * Added categories, since that was a requested feature - if you have
   any features in mind please let me know, and I will get back to you
@@ -67,9 +81,9 @@ Coding News:
 Switched to Intellij as my primary IDE no regrets, it is awesome (loving Vim Emulator).
 More code optimization ;)
 
-<--/ 3.3.0 /-->
 
 <-- 3.2.0 --> Log and AssignmentTodo directory
+
 
 * Added a log file for standard error and console input for debugging
 
@@ -82,9 +96,9 @@ at aj.segedi@gmail.com BEFORE starting up the program again.
 * Massively revamped code - more efficient and easier to work with
 * Added autoNotifications and a preference for them to trigger
 
-<--/ 3.2.0 /-->
 
 <-- 3.1.2 --> UI Tweaks and Save Bug
+
 
 * Added labels for both the loaded file and if the project has been saved
 * Program no longer prompts for save on exit if it has been saved already
@@ -98,9 +112,9 @@ at aj.segedi@gmail.com BEFORE starting up the program again.
 * Fixed bug where reminders were saved with the same time as the assignment
   was due instead of the time for the reminder
 
-<--/ 3.1.2 /-->
 
 <-- 3.0.0 --> FIRST UPDATE!
+
 
 Hey there! Welcome to AssignmentTodo! This is the first installation 
 where I have an about page, which you may or may not know about.
@@ -145,7 +159,9 @@ interface (no need to mention but hey whatever)
 * Implemented Key Accelerators (you know the ctrl+a keys etc.) they are
   listed on the Menus
 
-<--/ 3.0.0 /-->
+
+<--/ Changelog End /-->
+
 
 That about concludes the patch notes!
 Hope you guys like the program, and perhaps I have worked out most of the 

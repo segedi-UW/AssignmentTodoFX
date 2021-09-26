@@ -19,17 +19,8 @@ import java.util.Map;
 
 public class App extends Application {
 
-    private static final String LAST_STABLE_VERSION = "AssignmentTodo 3.5.0";
+    public static final String VERSION_ERROR = "Error Reading Version";
     public static final String VERSION = readVersion();
-
-    private static String readVersion() {
-        String version = LAST_STABLE_VERSION;
-        List<String> versionFile = Filer.readResource("AssignmentTodo.vrs");
-        if (!versionFile.isEmpty())
-            version = versionFile.get(0);
-        return version;
-    }
-
     public static final String DOWNLOAD_URL = "https://github.com/segedi-UW/AssignmentTodofx/blob/bce3ee211e06243f3c8963093aa73bc4756774df/out/artifacts/AssignmentTodo_jar/AssignmentTodo.jar?raw=true";
     public static final String DOWNLOAD_VERSION = "https://github.com/segedi-UW/AssignmentTodofx/raw/master/src/main/resources/com/todo/assignmenttodofx/AssignmentTodo.vrs";
     public static final String DOWNLOAD_INSTALLER = "https://github.com/segedi-UW/AssignmentTodofx/blob/bce3ee211e06243f3c8963093aa73bc4756774df/out/Installer.class?raw=true";
@@ -37,6 +28,57 @@ public class App extends Application {
     private static final HashMap<String, AudioResource> notificationSounds = notificationSounds();
 
     private Controller controller;
+
+
+    private static String readVersion() {
+        List<String> versionFile = Filer.readResource("AssignmentTodo.vrs");
+        return !versionFile.isEmpty() ? versionFile.get(0) : VERSION_ERROR;
+
+    }
+
+    public static boolean checkUpdate(Controller controller, Parameters params) {
+        CheckUpdateAlert alert = new CheckUpdateAlert();
+        alert.show();
+        String update = "";
+        if (params != null) {
+            Map<String, String> named = params.getNamed();
+            final String updateName = "update";
+            update = named.get(updateName) != null ? named.get(updateName) : "";
+            boolean failedUpdate = update.equalsIgnoreCase("fail");
+            if (failedUpdate) {
+                String log = named.get("updateLog");
+                controller.showError(new IllegalStateException("Update Failed"), "The update process failed", log);
+            }
+        }
+        System.out.println("Update param: " + update);
+        boolean forceUpdate = update.equalsIgnoreCase("true");
+        boolean noUpdate = update.equalsIgnoreCase("false");
+        boolean hasUpdate = (!noUpdate && AppUpdater.hasUpdate()) || forceUpdate;
+        if (App.VERSION.equals(App.VERSION_ERROR)) {
+            alert.hide();
+            controller.showError(new NullPointerException(""), "Version failed to be read - try reinstalling if the error persists",
+                    "Note that In the case of Version Read Failure, the Application will work correctly, it just" +
+                            "\nwill not update automatically. This would typically be a version error, so if it occurs\n" +
+                            "it will be unlikely for it to not occur on the next startup. Request that I update the jar\n" +
+                            "at aj.segedi@gmail.com if you have this error, or reach out to me at 262-955-5532");
+        } else if (hasUpdate) {
+            alert.hide();
+            UpdateAlert updateAlert = new UpdateAlert();
+            updateAlert.showAndWait().ifPresent(button -> {
+                if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE)
+                    try {
+                        System.out.println("Updating");
+                        AppUpdater.update(); // this should kill the program
+                    } catch (IOException e) {
+                        System.err.println("Failed to update the jar");
+                        controller.showError(e, "Update Failed");
+                    }
+            });
+        }
+        alert.close();
+        return false;
+    }
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -54,41 +96,15 @@ public class App extends Application {
         addStyleSheet(scene);
         setupStage(scene);
         controller = fxmlLoader.getController();
-        if (controller != null) {
-            if (Preference.LOAD_DEFAULT.getBoolean()) {
-                DefaultLoader loader = new DefaultLoader(controller);
-                loader.start();
-            }
-            final Parameters parameters = getParameters();
-            Map<String, String> named = parameters.getNamed();
-            String update = named.get("update");
-            if (update == null) update = ""; // sets to blank
-            System.out.println("Update param: " + update);
-            boolean forceUpdate = update.equalsIgnoreCase("true");
-            boolean noUpdate = update.equalsIgnoreCase("false");
-            boolean hasUpdate = (!noUpdate && AppUpdater.hasUpdate()) || forceUpdate;
-            boolean failedUpdate = update.equalsIgnoreCase("fail");
-            if (failedUpdate) {
-                String log = named.get("updateLog");
-                controller.showError(new IllegalStateException("Update Failed"), "The update process failed", log);
-            }
-            if (hasUpdate) {
-                UpdateAlert alert = new UpdateAlert();
-                alert.showAndWait().ifPresent(button -> {
-                    if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE)
-                        try {
-                            System.out.println("Updating");
-                            AppUpdater.update(); // this should kill the program
-                        } catch (IOException e) {
-                            System.err.println("Failed to update the jar");
-                            controller.showError(e, "Update Failed");
-                        }
-                });
-            } else if (controller.isNewInstallation()) {
-                AboutDialog about = new AboutDialog();
-                about.showAndWait();
-                Preference.VERSION.put(App.VERSION);
-            }
+        if (controller == null) throw new NullPointerException("Could not load main fxml controller");
+        if (!checkUpdate(controller, getParameters()) && controller.isNewInstallation()) {
+            AboutDialog about = new AboutDialog();
+            about.show();
+            Preference.VERSION.put(App.VERSION);
+        }
+        if (Preference.LOAD_DEFAULT.getBoolean()) {
+            DefaultLoader loader = new DefaultLoader(controller);
+            loader.start();
         }
     }
 
