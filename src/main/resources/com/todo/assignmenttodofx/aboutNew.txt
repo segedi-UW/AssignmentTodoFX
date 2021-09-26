@@ -4,7 +4,7 @@
 * Added Automatic detection of updates and an automatic
   installation process of these updates!!!
 
-* Removed the download button
+* Updated the download button to point to the project website
 
 The main thing in the way of me implementing something like
 this in the past was lack of knowledge, and lack of a

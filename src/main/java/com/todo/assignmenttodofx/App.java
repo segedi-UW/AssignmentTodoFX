@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class App extends Application {
 
-    public static final String VERSION = "AssignmentTodo 3.5.0";
+    public static final String VERSION = "AssignmentTodo 3.5.1";
     public static final String DOWNLOAD_URL = "https://segedi-UW.github.io/files/AssignmentTodo.jar";
     public static final String DOWNLOAD_VERSION = "https://segedi-UW.github.io/files/AssignmentTodo.vrs";
     public static final String DOWNLOAD_INSTALLER = "https://segedi-UW.github.io/files/Installer.class";
@@ -71,10 +71,10 @@ public class App extends Application {
                             AppUpdater.update(); // this should kill the program
                         } catch (IOException e) {
                             System.err.println("Failed to update the jar");
+                            controller.showError(e, "Update Failed");
                         }
                 });
-            }
-            if (controller.isNewInstallation()) {
+            } else if (controller.isNewInstallation()) {
                 AboutDialog about = new AboutDialog();
                 about.showAndWait();
                 Preference.VERSION.put(App.VERSION);
