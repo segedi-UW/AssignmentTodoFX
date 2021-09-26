@@ -16,3 +16,6 @@ As for the project itself... Here is what I have done so far
 * Reminders - Manually set and automatic reminders for when tasks (assignments) are due or close to being due - this also plays at application start if they are overdue at that time
 * Open files or webpages using the link function - links can be any valid url or local accessable path
 * Automatically keeps track of time with Updater daemon threads that do not remain after application close
+
+## Jar Download
+[Click here to download the latest jar!](https://github.com/segedi-UW/AssignmentTodofx/blob/master/out/artifacts/AssignmentTodo_jar/AssignmentTodo.jar?raw=true)
