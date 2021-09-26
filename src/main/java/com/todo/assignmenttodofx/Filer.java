@@ -21,28 +21,7 @@ public final class Filer {
     private Filer() {}
 
     public static File getDefaultFile() {
-        fixIncorrectFileName();
         return new File(getDirectory(), DEFAULT_FILE);
-    }
-
-    private static void fixIncorrectFileName() {
-        File incorrect = new File(getDirectory(), "AssignmentTodo-Defualt.tdo");
-        if (incorrect.exists()) {
-            File correct = new File(getDirectory(), DEFAULT_FILE);
-            if (!correct.exists()) {
-                try {
-                    Files.copy(incorrect.toPath(), correct.toPath());
-                    deleteFile(incorrect);
-                } catch (IOException e) {
-                    System.err.println("Error fixing incorrect filename: " + e.getMessage());
-                }
-            } else deleteFile(incorrect);
-        }
-    }
-
-    private static void deleteFile(File file) {
-        String print = file.getName() + " " + (file.delete() ? "was successfully" : "was not") + " deleted";
-        System.out.println(print);
     }
 
     public static File getDirectory() {
@@ -57,12 +36,22 @@ public final class Filer {
     }
 
     public static List<String> readResource(String name) {
+        List<String> lines = new LinkedList<>();
+        try {
+            lines = readResourceThrow(name);
+        } catch (NullPointerException e) {
+            System.err.println("Stream of " + name + " was null - returning empty list");
+        }
+        return lines;
+    }
+
+    public static List<String> readResourceThrow(String name) {
         LinkedList<String> lines = new LinkedList<>();
         InputStream stream = Filer.class.getResourceAsStream(name);
-        if (stream != null) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-            reader.lines().forEach(lines::add);
-        }
+        if (stream == null)
+            throw new NullPointerException("Stream of " + name + " was null");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        reader.lines().forEach(lines::add);
         return lines;
     }
 
