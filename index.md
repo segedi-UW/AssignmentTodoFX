@@ -1,37 +1,18 @@
-## Welcome to GitHub Pages
+# Welcome to the AssignmentTodo Webpage
 
-You can use the [editor on GitHub](https://github.com/segedi-UW/AssignmentTodofx/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This is my most comprehensive project to date - it is a standalone GUI Application created using javafx. It fufills my need for a task manager that opens links, reminds me when assignments are close to being due (including a display of the subsequent next 5 days) that dynamically changes each day - the program can be left running overnight if desired and will automatically shift the days etc (great for Night Owls).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Technologies
+* Javafx - FXML & CSS
+* Git
+* Maven
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/segedi-UW/AssignmentTodofx/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Features
+As for the project itself... Here is what I have done so far
+* Task Creation - including a required summary and date/time and optional category (that you can create), link, and description
+* Preferences - display in military time vs. standard time, if you want to load the default file automatically, notification sounds etc.
+* Persistent Storage - Can save and load assignment files - saved as a .tdo ("t-do" ~ todo)
+* Automatic update system - The Application checks the version file if internet connection is available - if it is outdated, it prompts the user to update and restart
+* Reminders - Manually set and automatic reminders for when tasks (assignments) are due or close to being due - this also plays at application start if they are overdue at that time
+* Open files or webpages using the link function - links can be any valid url or local accessable path
+* Automatically keeps track of time with Updater daemon threads that do not remain after application close
