@@ -24,7 +24,7 @@ public class App extends Application {
 
     private static String readVersion() {
         String version = LAST_STABLE_VERSION;
-        List<String> versionFile = Filer.readResource("AssignmentTodo.vrs");
+        List<String> versionFile = Filer.readResource("com/todo/assignmenttodofx/AssignmentTodo.vrs");
         if (!versionFile.isEmpty())
             version = versionFile.get(0);
         return version;
