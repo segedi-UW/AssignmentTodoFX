@@ -13,6 +13,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,8 +38,9 @@ public class App extends Application {
     }
 
     public static boolean checkUpdate(Controller controller, Parameters params) {
-        CheckUpdateAlert alert = new CheckUpdateAlert();
-        alert.show();
+        Notification notification = new Notification(Notification.Type.INFORMATIONAL, "Checking for Update");
+        notification.setHideAfterSeconds(1);
+        notification.show();
         String update = "";
         if (params != null) {
             Map<String, String> named = params.getNamed();
@@ -57,14 +59,12 @@ public class App extends Application {
         boolean noUpdate = update.equalsIgnoreCase("false");
         boolean hasUpdate = forceUpdate || (!noUpdate && AppUpdater.hasUpdate());
         if (App.VERSION.equals(App.VERSION_ERROR)) {
-            alert.hide();
             controller.showError(new NullPointerException(""), "Version failed to be read - try reinstalling if the error persists",
                     "Note that In the case of Version Read Failure, the Application will work correctly, it just" +
                             "\nwill not update automatically. This would typically be a version error, so if it occurs\n" +
                             "it will be unlikely for it to not occur on the next startup. Request that I update the jar\n" +
                             "at aj.segedi@gmail.com if you have this error, or reach out to me at 262-955-5532");
         } else if (hasUpdate) {
-            alert.hide();
             UpdateAlert updateAlert = new UpdateAlert();
             updateAlert.showAndWait().ifPresent(button -> {
                 if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE)
@@ -77,10 +77,8 @@ public class App extends Application {
                     }
             });
         }
-        alert.close();
         return false;
     }
-
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -99,11 +97,19 @@ public class App extends Application {
         setupStage(scene);
         controller = fxmlLoader.getController();
         if (controller == null) throw new NullPointerException("Could not load main fxml controller");
-        if (!checkUpdate(controller, getParameters()) && controller.isNewInstallation()) {
-            AboutDialog about = new AboutDialog();
-            about.show();
-            Preference.VERSION.put(App.VERSION);
-        }
+        Thread thread = new Thread(() -> {
+            if (!checkUpdate(controller, getParameters()) && controller.isNewInstallation()) {
+                Platform.runLater(() -> {
+                    AboutDialog about = new AboutDialog();
+                    about.show();
+                });
+                Preference.VERSION.put(App.VERSION);
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
+        Updater updater = Updater.dailyUpdater(Calendar.getInstance(), () -> checkUpdate(controller, null));
+        updater.start();
         if (Preference.LOAD_DEFAULT.getBoolean()) {
             DefaultLoader loader = new DefaultLoader(controller);
             loader.start();

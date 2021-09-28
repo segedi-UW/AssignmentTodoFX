@@ -1,3 +1,10 @@
+<-- 3.5.5 --> Check Update is not in a background thread 9/28/2021
+
+
+* No longer stalls program startup
+* Checks once every 24 hours - will now prompt for update without needing to close and open again
+
+
 <-- 3.5.4 --> Hidden Installer - 9/28/2021
 
 
