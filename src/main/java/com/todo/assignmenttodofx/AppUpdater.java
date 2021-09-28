@@ -41,8 +41,10 @@ public class AppUpdater {
                 if (stream != null) {
                     Files.copy(stream, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     String workDir = System.getProperty("user.dir");
-                    String cmd = "java " + "-cp " + dir.getAbsolutePath() + " Installer " + App.DOWNLOAD_URL + workDir;
+                    String cmd = "java " + "-cp " + dir.getAbsolutePath() + " Installer \"" + App.DOWNLOAD_URL + "\" \"" + workDir + "\"";
                     Platform.exit();
+                    System.out.println("Created class file in " + tmp.getAbsolutePath());
+                    System.out.println("Running: " + cmd);
                     Runtime.getRuntime().exec(cmd);
                 } else System.err.println("Error reading class file");
             } catch (Exception e) {
