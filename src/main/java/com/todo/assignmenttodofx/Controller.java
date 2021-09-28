@@ -303,8 +303,7 @@ public class Controller {
         if (assignment != null) {
             ReminderDialog dialog = new ReminderDialog(assignment);
             dialog.showAndWait().ifPresent(calendar -> {
-                Reminder reminder = new Reminder(assignment.getCalendar(), assignment.toString());
-                reminder.addTo(assignment.getReminders());
+                new Reminder(assignment.getCalendar(), assignment.toString(), assignment.getReminders());
                 saved.set(false);
             });
         }

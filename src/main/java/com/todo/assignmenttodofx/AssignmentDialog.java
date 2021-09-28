@@ -92,8 +92,7 @@ public class AssignmentDialog extends Dialog<Assignment> {
             if (toLink != null && !toLink.isBlank())
                 assignment.setLink(toLink);
             if (reminder.isSelected()) {
-                Reminder reminder = new Reminder(due, assignment.toString());
-                reminder.addTo(assignment.getReminders());
+                new Reminder(due, assignment.toString(), assignment.getReminders());
             }
             assignment.setCategory(categoryPicker.getValue());
             return assignment;

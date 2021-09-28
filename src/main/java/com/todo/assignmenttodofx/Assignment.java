@@ -1,11 +1,9 @@
 package com.todo.assignmenttodofx;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.util.Calendar;
-import java.util.List;
 import java.util.Timer;
 
 public class Assignment implements Comparable<Assignment> {
@@ -21,7 +19,6 @@ public class Assignment implements Comparable<Assignment> {
     private Calendar updateTime;
     private Reminder autoReminder;
     private TaskType type;
-    private Timer notifier;
     private ObservableList<Reminder> reminders;
     private Category category = Category.standard();
 
@@ -30,8 +27,7 @@ public class Assignment implements Comparable<Assignment> {
     public void createAutoReminder() {
         if (autoReminder != null)
             autoReminder.cancel();
-        autoReminder = new Reminder(updateTime, toString());
-        autoReminder.addTo(reminders);
+        autoReminder = new Reminder(updateTime, toString(), reminders);
     }
 
     public void cancel() {
@@ -48,42 +44,13 @@ public class Assignment implements Comparable<Assignment> {
 
     public Assignment(String summary, Calendar due, String link, boolean update) {
         this.update = update;
-        initialize();
+        reminders = FXCollections.observableArrayList();
         this.summary = summary;
         this.link = link;
         description = "";
         setCalendar(due);
     }
 
-    private void initialize() {
-        notifier = new Timer(true);
-        reminders = FXCollections.observableArrayList();
-        reminders.addListener(new ListChangeListener<>() {
-            @Override
-            public void onChanged(Change<? extends Reminder> change) {
-                while (change.next()) {
-                    if (change.getRemovedSize() > 0) {
-                        for (Reminder reminder : change.getRemoved()) {
-                            reminder.task.cancel();
-                        }
-                    } else {
-                        List<? extends Reminder> added = change.getAddedSubList();
-                        for (Reminder reminder : added) {
-                            schedule(reminder);
-                        }
-                    }
-                }
-            }
-
-            private void schedule(Reminder reminder) {
-                try {
-                    notifier.schedule(reminder.task, reminder.date.getTime());
-                } catch (IllegalArgumentException e) {
-                    System.err.println("Error creating reminder: " + e.getMessage());
-                }
-            }
-        });
-    }
 
     public Category getCategory() {
         return category;

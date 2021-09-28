@@ -44,8 +44,7 @@ public class AssignmentParser implements Filer.Savable<Assignment>, Filer.Parsab
                 assignment.setDescription(description);
             for (int i = 0; i < reminderDates.size(); i++) {
                 Calendar remind = parseCalendar(reminderDates.get(i), reminderTimes.get(i));
-                Reminder r = new Reminder(remind, assignment.toString());
-                r.addTo(assignment.getReminders());
+                new Reminder(remind, assignment.toString(), assignment.getReminders());
             }
             list.add(assignment);
         }

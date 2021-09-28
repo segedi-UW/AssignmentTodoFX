@@ -5,18 +5,20 @@ import javafx.scene.media.AudioClip;
 
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.Timer;
 import java.util.TimerTask;
 
 public class Reminder {
 
+    private static final Timer timer = new Timer(true);
     private static AudioClip clip;
     public final Calendar date;
     public final TimerTask task;
-    private final LinkedList<Collection<Reminder>> lists = new LinkedList<>();
+    private final Collection<Reminder> list;
 
-    public Reminder(Calendar date, String text) {
+    public Reminder(Calendar date, String text, Collection<Reminder> list) {
         this.date = (Calendar) date.clone();
+        this.list = list;
         task = new TimerTask() {
 
             @Override
@@ -30,17 +32,12 @@ public class Reminder {
                 });
             }
         };
-    }
-
-    public void addTo(Collection<Reminder> reminders) {
-        reminders.add(this);
-        lists.add(reminders);
+        timer.schedule(task, date.getTime());
     }
 
     public void cancel() {
-        for (Collection<Reminder> c : lists) {
-            c.remove(this);
-        }
+        list.remove(this);
+        task.cancel();
     }
 
     public static void play() {
