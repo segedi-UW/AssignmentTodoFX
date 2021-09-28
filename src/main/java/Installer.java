@@ -21,7 +21,8 @@ public class Installer {
         String jarURL = args[0];
         System.out.println("Installing from " + jarURL);
         URL url = createURL(jarURL);
-        File install = new File(args[1], name);
+        String jarDir = args.length > 1 ? args[1] : System.getProperty("user.dir");
+        File install = new File(jarDir, name);
         if (url != null) download(url, install);
         else System.err.println("Failed to createURL from " + jarURL);
     }
