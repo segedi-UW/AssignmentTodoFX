@@ -274,6 +274,7 @@ public class Controller {
         alert.showAndWait().ifPresent(button -> {
             if (button.equals(ButtonType.OK)) {
                 master.getItems().clear();
+                master.getCheckModel().clearChecks();
                 saved.set(false);
             }
         });
@@ -282,8 +283,12 @@ public class Controller {
     @FXML
     private void removeSelectedTasks() {
         ObservableList<Assignment> checked = master.getCheckModel().getCheckedItems();
-        master.getItems().removeAll(checked);
-        saved.set(false);
+        if (checked.size() > 0) {
+            master.getItems().removeAll(checked);
+            master.getCheckModel().getCheckedItems();
+            master.getCheckModel().clearChecks();
+            saved.set(false);
+        }
     }
 
     @FXML
@@ -292,6 +297,7 @@ public class Controller {
         if (selected != null) {
             ObservableList<Reminder> reminds = reminders.getCheckModel().getCheckedItems();
             selected.getReminders().removeAll(reminds);
+            reminders.getCheckModel().clearChecks();
             refresh();
             saved.set(false);
         }
