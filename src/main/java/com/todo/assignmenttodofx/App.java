@@ -22,7 +22,7 @@ public class App extends Application {
 
     public static final String VERSION_ERROR = "Error Reading Version";
     public static final String VERSION = readVersion();
-    public static final String DOWNLOAD_URL = "https://github.com/segedi-UW/AssignmentTodofx/blob/bce3ee211e06243f3c8963093aa73bc4756774df/out/artifacts/AssignmentTodo_jar/AssignmentTodo.jar?raw=true";
+    public static final String DOWNLOAD_URL = "https://github.com/segedi-UW/AssignmentTodofx/blob/master/out/artifacts/AssignmentTodo_jar/AssignmentTodo.jar?raw=true";
     public static final String DOWNLOAD_VERSION = "https://github.com/segedi-UW/AssignmentTodofx/raw/master/src/main/resources/com/todo/assignmenttodofx/AssignmentTodo.vrs";
     public static final String DOWNLOAD_INSTALLER = "https://github.com/segedi-UW/AssignmentTodofx/blob/master/target/classes/Installer.class?raw=true";
     private static Stage main;
