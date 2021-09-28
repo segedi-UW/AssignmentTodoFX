@@ -1,8 +1,16 @@
+<-- 3.5.6 --> Expanded / Collapsed Notifications 9/28/2021
+
+
+* Added Collapsed Notifications (when there are too many notifications
+  to be viewed at one time -> one notification that can be clicked.
+
+
 <-- 3.5.5 --> Check Update is not in a background thread 9/28/2021
 
 
 * No longer stalls program startup
-* Checks once every 24 hours - will now prompt for update without needing to close and open again
+* Checks once every 24 hours - will now prompt for update without needing
+  to close and open again
 
 
 <-- 3.5.4 --> Hidden Installer - 9/28/2021
