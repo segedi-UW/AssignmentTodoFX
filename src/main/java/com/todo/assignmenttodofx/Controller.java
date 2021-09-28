@@ -160,7 +160,7 @@ public class Controller {
     }
 
     public void showError(Exception e, String message, String log) {
-        String show = e.getMessage() + ": " + message;
+        String show = e.getMessage() + ": " + message + (log != null ? log : "");
         System.err.println(show);
         ErrorAlert alert = new ErrorAlert(e, message, log);
         Platform.runLater(alert::showAndWait);

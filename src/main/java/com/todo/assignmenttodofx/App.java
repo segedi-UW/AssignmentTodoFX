@@ -23,7 +23,7 @@ public class App extends Application {
     public static final String VERSION = readVersion();
     public static final String DOWNLOAD_URL = "https://github.com/segedi-UW/AssignmentTodofx/blob/bce3ee211e06243f3c8963093aa73bc4756774df/out/artifacts/AssignmentTodo_jar/AssignmentTodo.jar?raw=true";
     public static final String DOWNLOAD_VERSION = "https://github.com/segedi-UW/AssignmentTodofx/raw/master/src/main/resources/com/todo/assignmenttodofx/AssignmentTodo.vrs";
-    public static final String DOWNLOAD_INSTALLER = "https://github.com/segedi-UW/AssignmentTodofx/blob/master/src/main/java/Installer.class?raw=true";
+    public static final String DOWNLOAD_INSTALLER = "https://github.com/segedi-UW/AssignmentTodofx/blob/master/src/main/java/Installer.java?raw=true";
     private static Stage main;
     private static final HashMap<String, AudioResource> notificationSounds = notificationSounds();
 
@@ -42,11 +42,13 @@ public class App extends Application {
         String update = "";
         if (params != null) {
             Map<String, String> named = params.getNamed();
+            System.out.println("Mapped names: "+ named.keySet() + " : " + named.values());
             final String updateName = "update";
             update = named.get(updateName) != null ? named.get(updateName) : "";
             boolean failedUpdate = update.equalsIgnoreCase("fail");
             if (failedUpdate) {
                 String log = named.get("updateLog");
+                System.out.println("log: " + log);
                 controller.showError(new IllegalStateException("Update Failed"), "The update process failed", log);
             }
         }
