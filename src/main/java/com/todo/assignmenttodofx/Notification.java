@@ -27,7 +27,6 @@ public class Notification {
     private final Type type;
     private final String title;
     private final String text;
-    private long autoHide;
 
     public static void createAndShowStage() {
         Stage s = new Stage();
@@ -76,7 +75,6 @@ public class Notification {
 
     public void setHideAfterSeconds(double duration) {
         notification.hideAfter(Duration.seconds(duration));
-        autoHide = 3;
     }
 
     public void show() {
@@ -87,7 +85,8 @@ public class Notification {
         // runs within the javafx application thread
         Stage main = App.getStage();
         showing.add(this);
-        remover.schedule(removeTask(), autoHide * 1000L);
+        final long autoRemove = 30 * 1000L; // 10 seconds
+        remover.schedule(removeTask(), autoRemove);
         if (main.isShowing())
             notification.owner(main);
         switch (type) {
@@ -128,7 +127,7 @@ public class Notification {
         public ThresholdAlert(String areaText) {
             super(AlertType.INFORMATION);
             setTitle("AssignmentTodo Notifications");
-            setHeaderText("Notification Summary");
+            setHeaderText("Recent Notifications Summary");
             TextArea area = new TextArea(areaText);
             area.setEditable(false);
             getDialogPane().setContent(area);

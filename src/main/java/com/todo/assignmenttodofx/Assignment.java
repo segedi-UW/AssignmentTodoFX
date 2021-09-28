@@ -11,7 +11,7 @@ import java.util.Timer;
 public class Assignment implements Comparable<Assignment> {
 
     public static final int SOON_CUTOFF = 8;
-    private static final Display display = Display.SUMMARY_TIME;
+    private static final Display display = Display.FULL;
 
     private final boolean update;
     private String summary;
