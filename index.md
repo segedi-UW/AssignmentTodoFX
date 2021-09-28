@@ -19,3 +19,6 @@ As for the project itself... Here is what I have done so far
 
 ## Jar Download
 [Click here to download the latest jar!](https://github.com/segedi-UW/AssignmentTodofx/blob/master/out/artifacts/AssignmentTodo_jar/AssignmentTodo.jar?raw=true)
+## No longer AutoUpdater Backward Compatible as of 9/28/2021
+I apoligize but the auto update feature will not correctly update for versions before this date. To update simply reinstall the application from here. This should
+not be a future issue, but as this is my first time doing this there are bound to be hiccups like this. Thank you for your patience!
