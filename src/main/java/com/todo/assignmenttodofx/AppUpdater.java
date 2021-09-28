@@ -33,13 +33,15 @@ public class AppUpdater {
 
     public static void update() throws IOException {
         if (installer != null) {
-            File tmp = new File(System.getProperty("user.dir"),"Installer.class");
+            File dir = Filer.getDirectory();
+            File tmp = new File(dir,"Installer.class");
             // move file from jar to tmp
             System.out.println("Created: " + tmp.getName());
             try (InputStream stream = installer.openStream()) {
                 if (stream != null) {
                     Files.copy(stream, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    String cmd = "java " + " Installer " + App.DOWNLOAD_URL;
+                    String workDir = System.getProperty("user.dir");
+                    String cmd = "java " + "-cp " + dir.getAbsolutePath() + " Installer " + App.DOWNLOAD_URL + workDir;
                     Platform.exit();
                     Runtime.getRuntime().exec(cmd);
                 } else System.err.println("Error reading class file");

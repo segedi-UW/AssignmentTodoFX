@@ -7,15 +7,13 @@ import java.nio.file.StandardCopyOption;
 public class Installer {
 
     private static final String REGEX = ".*AssignmentTodo.*\\.jar$";
-    private static final String name = scanJarName();
+    private static String name;
 
     public static void main(String[] args) {
-        if (args.length != 1)
-            exit("Incorrect number of arguments, expected <download URL>");
-
-        final String installerFilename = Installer.class.getName() + ".class";
-        final String dir = System.getProperty("user.dir");
-        File installerFile = new File(dir, installerFilename);
+        if (args.length != 2)
+            exit("Incorrect number of arguments, expected <download URL> <install directory>");
+        name = scanJarName(args[1]);
+        File installerFile = installerFile();
         if (installerFile.exists()) {
             System.out.println("Found Installer file");
             installerFile.deleteOnExit();
@@ -23,8 +21,16 @@ public class Installer {
         String jarURL = args[0];
         System.out.println("Installing from " + jarURL);
         URL url = createURL(jarURL);
-        if (url != null) download(url);
+        File install = new File(args[1], name);
+        if (url != null) download(url, install);
         else System.err.println("Failed to createURL from " + jarURL);
+    }
+
+    private static File installerFile() {
+        String path = System.getProperty("user.home") +
+                File.separator +
+                "AssignmentTodo";
+        return new File(path, Installer.class.getName() + ".class");
     }
 
     private static URL createURL(String urlPath) {
@@ -36,9 +42,9 @@ public class Installer {
         return null;
     }
 
-    private static void download(URL url) {
+    private static void download(URL url, File install) {
         try {
-            if (!install(url)) exit("Failed to Install Jar");
+            if (!install(url, install)) exit("Failed to Install Jar");
             System.out.println("Restarting");
             Runtime.getRuntime().exec("java -jar " + name);
         } catch (IOException e) {
@@ -46,12 +52,11 @@ public class Installer {
         }
     }
 
-    private static boolean install(URL url) {
+    private static boolean install(URL url, File install) {
         try {
             System.out.println("Downloading");
             InputStream stream = url.openStream();
-            File file = new File(System.getProperty("user.dir"), name);
-            Files.copy(stream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(stream, install.toPath(), StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Installed");
             return true;
         } catch (IOException e) {
@@ -70,8 +75,7 @@ public class Installer {
         System.exit(1);
     }
 
-    private static String scanJarName() {
-        final String dirName = System.getProperty("user.dir");
+    private static String scanJarName(String dirName) {
         File dir = new File(dirName);
         if (dir.exists() && dir.isDirectory()) {
             String[] files = dir.list((dir1, name) -> name.matches(REGEX));
