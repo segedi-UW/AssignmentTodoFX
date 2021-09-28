@@ -1,3 +1,10 @@
+<-- 3.5.3 --> Installer Stability - 9/28/2021
+
+
+* Changed Installer location and updated stability - will leave
+  old installer in current location for previous versions.
+
+
 <-- 3.5.2 --> QoL Changes - 9/26/2021
 
 
