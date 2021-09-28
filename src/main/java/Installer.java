@@ -10,9 +10,9 @@ public class Installer {
     private static String name;
 
     public static void main(String[] args) {
-        if (args.length == 1 || args.length == 2)
+        if (args.length != 2)
             exit("Incorrect number of arguments, expected <download URL> <install directory>");
-        name = args.length == 2 ? scanJarName(args[1]) : scanJarName(System.getProperty("user.dir"));
+        name = scanJarName(args[1]);
         File installerFile = installerFile();
         if (installerFile.exists()) {
             System.out.println("Found Installer file");
@@ -21,8 +21,7 @@ public class Installer {
         String jarURL = args[0];
         System.out.println("Installing from " + jarURL);
         URL url = createURL(jarURL);
-        String jarDir = args.length > 1 ? args[1] : System.getProperty("user.dir");
-        File install = new File(jarDir, name);
+        File install = new File(args[1], name);
         if (url != null) download(url, install);
         else System.err.println("Failed to createURL from " + jarURL);
     }
