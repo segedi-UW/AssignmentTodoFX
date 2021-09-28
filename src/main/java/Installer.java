@@ -10,9 +10,9 @@ public class Installer {
     private static String name;
 
     public static void main(String[] args) {
-        if (args.length != 2)
+        if (args.length != 1 && args.length != 2)
             exit("Incorrect number of arguments, expected <download URL> <install directory>");
-        name = scanJarName(args[1]);
+        name = args.length == 2 ? scanJarName(args[1]) : scanJarName(System.getProperty("user.dir"));
         File installerFile = installerFile();
         if (installerFile.exists()) {
             System.out.println("Found Installer file");
