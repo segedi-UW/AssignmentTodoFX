@@ -36,7 +36,7 @@ public class AppUpdater {
             File dir = Filer.getDirectory();
             File tmp = new File(dir,"Installer.class");
             // move file from jar to tmp
-            System.out.println("Created: " + tmp.getName());
+            System.out.println("Filename: " + tmp.getAbsolutePath());
             try (InputStream stream = installer.openStream()) {
                 if (stream != null) {
                     Files.copy(stream, tmp.toPath(), StandardCopyOption.REPLACE_EXISTING);

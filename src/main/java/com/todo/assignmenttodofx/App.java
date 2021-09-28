@@ -55,7 +55,7 @@ public class App extends Application {
         System.out.println("Update param: " + update);
         boolean forceUpdate = update.equalsIgnoreCase("true");
         boolean noUpdate = update.equalsIgnoreCase("false");
-        boolean hasUpdate = (!noUpdate && AppUpdater.hasUpdate()) || forceUpdate;
+        boolean hasUpdate = forceUpdate || (!noUpdate && AppUpdater.hasUpdate());
         if (App.VERSION.equals(App.VERSION_ERROR)) {
             alert.hide();
             controller.showError(new NullPointerException(""), "Version failed to be read - try reinstalling if the error persists",
