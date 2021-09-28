@@ -65,16 +65,18 @@ public class App extends Application {
                             "it will be unlikely for it to not occur on the next startup. Request that I update the jar\n" +
                             "at aj.segedi@gmail.com if you have this error, or reach out to me at 262-955-5532");
         } else if (hasUpdate) {
-            UpdateAlert updateAlert = new UpdateAlert();
-            updateAlert.showAndWait().ifPresent(button -> {
-                if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE)
-                    try {
-                        System.out.println("Updating");
-                        AppUpdater.update(); // this should kill the program
-                    } catch (IOException e) {
-                        System.err.println("Failed to update the jar");
-                        controller.showError(e, "Update Failed");
-                    }
+            Platform.runLater(() -> {
+                UpdateAlert updateAlert = new UpdateAlert();
+                updateAlert.showAndWait().ifPresent(button -> {
+                    if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE)
+                        try {
+                            System.out.println("Updating");
+                            AppUpdater.update(); // this should kill the program
+                        } catch (IOException e) {
+                            System.err.println("Failed to update the jar");
+                            controller.showError(e, "Update Failed");
+                        }
+                });
             });
         }
         return false;
