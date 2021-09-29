@@ -1,3 +1,14 @@
+<-- 3.5.7 --> Reminder / Notification persistence 9/28/2021
+
+
+* Changed reminder persistence to indefinite by default. Now
+  can be changed in Preference menu.
+* Notifications can be now set to show indefinitely. Can be changed
+  in the Preference menu.
+* After reopening AssignmentTodo from the taskbar, a notification
+  pops up that when clicked shows a summary of past notifications.
+
+
 <-- 3.5.6 --> Expanded / Collapsed Notifications 9/28/2021
 
 

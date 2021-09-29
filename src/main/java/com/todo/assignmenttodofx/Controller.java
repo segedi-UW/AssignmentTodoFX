@@ -31,6 +31,8 @@ public class Controller {
     @FXML public CheckMenuItem muteCheck;
     @FXML public CheckMenuItem autoLoadCheck;
     @FXML public CheckMenuItem autoNotificationCheck;
+    @FXML public CheckMenuItem autoHideNotifications;
+    @FXML public CheckMenuItem autoHideReminders;
     @FXML public Label summaryText;
     @FXML public Label dueText;
     @FXML public TextArea descriptionArea;
@@ -97,6 +99,10 @@ public class Controller {
         });
         autoLoadCheck.setSelected(Preference.LOAD_DEFAULT.getBoolean());
         autoLoadCheck.selectedProperty().addListener((obs, oldValue, newValue) -> Preference.LOAD_DEFAULT.put(newValue));
+        autoHideNotifications.setSelected(Preference.AUTO_HIDE_NOTIFICATIONS.getBoolean());
+        autoHideNotifications.selectedProperty().addListener((obs, oldValue, newValue) -> Preference.AUTO_HIDE_NOTIFICATIONS.put(newValue));
+        autoHideReminders.setSelected(Preference.AUTO_HIDE_REMINDERS.getBoolean());
+        autoHideReminders.selectedProperty().addListener((obs, oldValue, newValue) -> Preference.AUTO_HIDE_REMINDERS.put(newValue));
         autoNotificationCheck.setSelected(Preference.AUTO_REMIND.getBoolean());
         autoNotificationCheck.selectedProperty().addListener((obs, oldValue, newValue) -> {
             Preference.AUTO_REMIND.put(newValue);

@@ -19,12 +19,16 @@ public class Reminder {
     public Reminder(Calendar date, String text, Collection<Reminder> list) {
         this.date = (Calendar) date.clone();
         this.list = list;
+        list.add(this);
         task = new TimerTask() {
 
             @Override
             public void run() {
-                Notification notification = new Notification(Notification.Type.INFORMATIONAL, text);
-                notification.setHideAfterSeconds(5);
+                Notification notification = new Notification(Notification.Type.INFORMATIONAL, "Reminder", text);
+                if (Preference.AUTO_HIDE_REMINDERS.getBoolean())
+                    notification.setHideAfterSeconds(8);
+                else
+                    notification.setHideAfterSeconds(Notification.NO_AUTO_HIDE);
                 Platform.runLater(() -> {
                     notification.show();
                     play();

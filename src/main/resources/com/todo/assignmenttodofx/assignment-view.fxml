@@ -42,6 +42,8 @@
                 </CustomMenuItem>
                 <CheckMenuItem text="Autoload Default" fx:id="autoLoadCheck"/>
                 <CheckMenuItem text="AutoNotifications" fx:id="autoNotificationCheck"/>
+                <CheckMenuItem text="AutoHide Notifications" fx:id="autoHideNotifications"/>
+                <CheckMenuItem text="AutoHide Reminders" fx:id="autoHideReminders"/>
                 <SeparatorMenuItem/>
                 <MenuItem text="Reset Preferences" onAction="#resetPreferences"/>
             </Menu>

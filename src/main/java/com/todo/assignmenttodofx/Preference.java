@@ -7,7 +7,9 @@ public enum Preference {
     TRAY(true), VERSION("NO_VERSION"),
     LOAD_DEFAULT(true),
     SHOW_STATE(true),
-    AUTO_REMIND(true);
+    AUTO_REMIND(true),
+    AUTO_HIDE_NOTIFICATIONS(true),
+    AUTO_HIDE_REMINDERS(false);
 
     private enum Type {
         STRING, BOOLEAN

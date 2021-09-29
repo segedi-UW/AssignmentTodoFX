@@ -86,6 +86,10 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         main = stage;
         Notification.createAndShowStage();
+        stage.setOnShowing(event -> {
+            System.out.println("Showing Main Stage");
+            Notification.showThenClearShown();
+        });
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("assignment-view.fxml"));
         if (fxmlLoader.getLocation() == null) {
             System.err.println("Could not locate the main fxml file [App]");
