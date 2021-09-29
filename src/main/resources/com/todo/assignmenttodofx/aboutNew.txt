@@ -23,7 +23,7 @@
   to be viewed at one time -> one notification that can be clicked.
 
 
-<-- 3.5.5 --> Check Update is not in a background thread 9/28/2021
+<-- 3.5.5 --> Check Update is now in a background thread 9/28/2021
 
 
 * No longer stalls program startup
