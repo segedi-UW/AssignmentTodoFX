@@ -79,7 +79,8 @@ public class Notification {
         s.setOpacity(0);
         Group root = new Group();
         Rectangle2D screen = Screen.getPrimary().getBounds();
-        Scene scene = new Scene(root, screen.getWidth(), screen.getHeight(), Color.TRANSPARENT);
+        final int bottomMargin = 60;
+        Scene scene = new Scene(root, screen.getWidth(), screen.getHeight() - bottomMargin, Color.TRANSPARENT);
         s.setScene(scene);
         stage = s;
         s.show();
