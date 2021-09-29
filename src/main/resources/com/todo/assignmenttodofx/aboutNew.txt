@@ -1,3 +1,10 @@
+<-- 3.5.8 --> Notification Action 9/28/2021
+
+
+* Can now click on a notification to show AssignmentTodo
+  - even if it is currently in the System Tray
+
+
 <-- 3.5.7 --> Reminder / Notification persistence 9/28/2021
 
 

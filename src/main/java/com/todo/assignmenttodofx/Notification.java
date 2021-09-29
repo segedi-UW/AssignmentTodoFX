@@ -69,6 +69,11 @@ public class Notification {
             notification.hideAfter(Duration.seconds(3));
         else
             notification.hideAfter(Duration.INDEFINITE);
+        notification.onAction(event -> {
+            App.getStage().show();
+            App.getStage().setIconified(false);
+            App.getStage().toFront();
+        });
         return notification;
     }
 
@@ -121,9 +126,9 @@ public class Notification {
 
     private void showOfType() {
         // runs within the javafx application thread
-        showing.add(this);
         if (!App.getStage().isShowing())
             showed.add(this);
+        showing.add(this);
         final long autoRemove = 30 * 1000L; // 30 seconds
         remover.schedule(removeTask(), autoRemove);
         switch (type) {
