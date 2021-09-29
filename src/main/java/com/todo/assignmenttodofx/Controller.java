@@ -59,12 +59,16 @@ public class Controller {
     @FXML
     private void initialize() {
         master.getItems().addListener((ListChangeListener<? super Assignment>) c -> {
+            boolean sort = false;
             while (c.next()) {
                 List<? extends Assignment> removed = c.getRemoved();
                 for (Assignment a : removed) {
                     a.cancel();
                 }
+                if (c.getAddedSize() > 0)
+                    sort = true;
             }
+            if (sort) master.getItems().sort(null);
         });
         reminders.setFocusTraversable(false);
         master.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
