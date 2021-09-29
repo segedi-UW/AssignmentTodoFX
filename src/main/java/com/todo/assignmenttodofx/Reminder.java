@@ -20,6 +20,7 @@ public class Reminder {
         this.date = (Calendar) date.clone();
         this.list = list;
         list.add(this);
+        Reminder reminder = this;
         task = new TimerTask() {
 
             @Override
@@ -32,7 +33,7 @@ public class Reminder {
                 Platform.runLater(() -> {
                     notification.show();
                     play();
-                    cancel();
+                    reminder.cancel();
                 });
             }
         };
