@@ -270,6 +270,7 @@ public class Controller {
         AssignmentDialog dialog = new AssignmentDialog();
         dialog.showAndWait().ifPresent(assignment -> {
             master.getItems().add(assignment);
+            refresh();
             saved.set(false);
         });
     }
@@ -281,6 +282,7 @@ public class Controller {
             if (button.equals(ButtonType.OK)) {
                 master.getItems().clear();
                 master.getCheckModel().clearChecks();
+                refresh();
                 saved.set(false);
             }
         });
@@ -293,6 +295,7 @@ public class Controller {
             master.getItems().removeAll(checked);
             master.getCheckModel().getCheckedItems();
             master.getCheckModel().clearChecks();
+            refresh();
             saved.set(false);
         }
     }
