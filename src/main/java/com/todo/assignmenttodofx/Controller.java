@@ -316,6 +316,7 @@ public class Controller {
             ReminderDialog dialog = new ReminderDialog(assignment);
             dialog.showAndWait().ifPresent(calendar -> {
                 new Reminder(assignment.getCalendar(), assignment.toString(), assignment.getReminders());
+                refresh();
                 saved.set(false);
             });
         }
