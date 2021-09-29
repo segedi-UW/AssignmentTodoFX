@@ -13,8 +13,6 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 import java.util.LinkedList;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Notification {
@@ -24,7 +22,6 @@ public class Notification {
 
     private static final ConcurrentLinkedQueue<Notification> showing = new ConcurrentLinkedQueue<>();
     private static final LinkedList<Notification> showed = new LinkedList<>();
-    private static final Timer remover = new Timer(true);
     private final Notifications notification;
     private final Type type;
     private final String title;
@@ -58,6 +55,7 @@ public class Notification {
                 builder.append("\n\n");
             }
             Platform.runLater(() -> new ThresholdAlert(builder.toString(), "Recent Notifications Summary").show());
+            showing.clear();
         });
         notification.threshold(3, threshNotification);
     }
@@ -129,8 +127,6 @@ public class Notification {
         if (!App.getStage().isShowing())
             showed.add(this);
         showing.add(this);
-        final long autoRemove = 30 * 1000L; // 30 seconds
-        remover.schedule(removeTask(), autoRemove);
         switch (type) {
             case WARNING:
                 notification.showWarning();
@@ -148,16 +144,6 @@ public class Notification {
                 notification.show();
                 break;
         }
-    }
-
-    private TimerTask removeTask() {
-        Notification current = this;
-        return new TimerTask() {
-            @Override
-            public void run() {
-                showing.remove(current);
-            }
-        };
     }
 
     @Override
