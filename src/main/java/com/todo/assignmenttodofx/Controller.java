@@ -7,6 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -424,5 +425,18 @@ public class Controller {
         Reminder.setSound(newRes.getClip());
         Preference.TONE.put(newRes.getResourceName());
         Reminder.play();
+    }
+
+    public void forceUpdate() {
+        UpdateAlert alert = new UpdateAlert();
+        alert.showAndWait().ifPresent(button -> {
+            if (button.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                try {
+                    AppUpdater.update();
+                } catch (IOException e) {
+                    showError(e, "Failed to update");
+                }
+            }
+        });
     }
 }

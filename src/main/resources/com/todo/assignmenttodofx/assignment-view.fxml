@@ -52,6 +52,8 @@
                 <SeparatorMenuItem/>
                 <MenuItem text="Open Webpage" onAction="#openWebpage"/>
                 <MenuItem text="Changelog" onAction="#showAbout"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Force Update" onAction="#forceUpdate"/>
             </Menu>
         </MenuBar>
     </top>
