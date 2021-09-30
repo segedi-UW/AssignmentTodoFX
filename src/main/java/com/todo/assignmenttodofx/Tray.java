@@ -62,13 +62,13 @@ public class Tray {
 
                 try {
                     tray.add(icon);
-                    App.getStage().hide();
                     String text = "Default Tray Location is here next to clock";
                     String title = "AssignmentTodo Minimized To Tray";
                     Notification notification;
                     notification = new Notification(Notification.Type.INFORMATIONAL, title, text);
                     notification.setHideAfterSeconds(2);
                     notification.show();
+                    App.getStage().hide();
                 } catch (AWTException e) {
                     controller.showError(e, "Could not add Tray to the System Tray");
                 }

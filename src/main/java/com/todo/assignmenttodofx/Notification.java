@@ -1,5 +1,6 @@
 package com.todo.assignmenttodofx;
 
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -119,7 +120,10 @@ public class Notification {
     }
 
     public void show() {
-        Platform.runLater(this::showOfType);
+        if (Platform.isFxApplicationThread())
+            showOfType();
+        else
+            Platform.runLater(this::showOfType);
     }
 
     private void showOfType() {

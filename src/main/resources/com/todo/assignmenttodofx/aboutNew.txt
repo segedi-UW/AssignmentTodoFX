@@ -1,3 +1,14 @@
+<-- 3.6.0 --> FileLock 9/30/2021
+
+
+* Added a fileLock that stops the application from
+  being opened more than once - if the
+  user puts it in the SystemTray and forgets
+  for example
+* Fixed Error Logs not being properly written after
+  switch to FXML
+
+
 <-- 3.5.9 --> Bug Fixes and Notification Tweaks 9/29/2021
 
 
