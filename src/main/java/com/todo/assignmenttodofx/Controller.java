@@ -411,7 +411,6 @@ public class Controller {
         String summary = "";
         String description = "(No selection)";
         String due = "";
-        reminders.getItems().clear();
         if (newValue != null) {
             reminders.setItems(newValue.getReminders());
             description = newValue.getDescription();

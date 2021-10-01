@@ -1,3 +1,10 @@
+<-- 3.6.2 --> Reminders deleted fix 10/1/2021
+
+
+* Fix for Reminders being deleted when clicking
+  on assignment
+
+
 <-- 3.6.1 --> Fix AutoReminder Time 10/1/2021
 
 
