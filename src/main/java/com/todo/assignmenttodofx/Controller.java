@@ -413,7 +413,7 @@ public class Controller {
         String due = "";
         reminders.getItems().clear();
         if (newValue != null) {
-            reminders.getItems().addAll(newValue.getReminders());
+            reminders.setItems(newValue.getReminders());
             description = newValue.getDescription();
             summary = newValue.getSummary();
             Calendar c = newValue.getCalendar();

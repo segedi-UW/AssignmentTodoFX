@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.Calendar;
-import java.util.Timer;
 
 public class Assignment implements Comparable<Assignment> {
 
@@ -19,7 +18,7 @@ public class Assignment implements Comparable<Assignment> {
     private Calendar updateTime;
     private Reminder autoReminder;
     private TaskType type;
-    private ObservableList<Reminder> reminders;
+    private final ObservableList<Reminder> reminders;
     private Category category = Category.standard();
 
     private Calendar due;
@@ -60,40 +59,43 @@ public class Assignment implements Comparable<Assignment> {
         this.due = due;
         setType();
         if (update) {
-            Calendar updateTime = (Calendar)due.clone();
-            updateTime.set(Calendar.SECOND, 0);
-            setUpdate(updateTime);
+            setUpdate();
         }
     }
 
-    private void setUpdate(Calendar updateTime) {
-        this.updateTime = updateTime;
+    private void setUpdate() {
+        Calendar updateTime = (Calendar)due.clone();
+        updateTime.set(Calendar.SECOND, 0);
         if (updater != null)
             updater.cancel();
 
-        if (Preference.AUTO_REMIND.getBoolean())
-            createAutoReminder();
-
         updater = Updater.updater(updateTime, this::setNextType);
-        updater.setDateIncrementer(current -> {
-            switch(type) {
-                case OVERDUE:
-                    // There is nothing after overdue
-                    current = null;
-                    break;
-                case SOON:
-                    current = (Calendar)due.clone();
-                    break;
-                case STANDARD:
-                    current = (Calendar)due.clone();
-                    current.add(Calendar.HOUR_OF_DAY, -SOON_CUTOFF);
-                    break;
-                default:
-                    break;
-            }
-            return current;
-        });
+        updater.setDateIncrementer(this::getUpdateTime);
         updater.start();
+
+        if (Preference.AUTO_REMIND.getBoolean()) {
+            this.updateTime = getUpdateTime(due);
+            createAutoReminder();
+        }
+    }
+
+    private Calendar getUpdateTime(Calendar current) {
+        switch(type) {
+            case OVERDUE:
+                // There is nothing after overdue
+                current = null;
+                break;
+            case SOON:
+                current = (Calendar)due.clone();
+                break;
+            case STANDARD:
+                current = (Calendar)due.clone();
+                current.add(Calendar.HOUR_OF_DAY, -SOON_CUTOFF);
+                break;
+            default:
+                break;
+        }
+        return current;
     }
 
     private void setNextType() {
