@@ -44,7 +44,7 @@ public class App extends Application {
         String update = "";
         if (params != null) {
             Map<String, String> named = params.getNamed();
-            System.out.println("Mapped names: "+ named.keySet() + " : " + named.values());
+            System.out.println("Mapped names: " + named.keySet() + " : " + named.values());
             final String updateName = "update";
             update = named.get(updateName) != null ? named.get(updateName) : "";
             boolean failedUpdate = update.equalsIgnoreCase("fail");

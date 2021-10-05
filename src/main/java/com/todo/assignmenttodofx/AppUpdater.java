@@ -34,7 +34,7 @@ public class AppUpdater {
     public static void update() throws IOException {
         if (installer != null) {
             File dir = Filer.getDirectory();
-            File tmp = new File(dir,"Installer.class");
+            File tmp = new File(dir, "Installer.class");
             // move file from jar to tmp
             System.out.println("Filename: " + tmp.getAbsolutePath());
             try (InputStream stream = installer.openStream()) {

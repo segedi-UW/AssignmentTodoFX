@@ -27,27 +27,48 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Controller {
-    @FXML public CheckMenuItem militaryTimeCheck;
-    @FXML public CheckMenuItem muteCheck;
-    @FXML public CheckMenuItem autoLoadCheck;
-    @FXML public CheckMenuItem autoNotificationCheck;
-    @FXML public CheckMenuItem autoHideNotifications;
-    @FXML public CheckMenuItem autoHideReminders;
-    @FXML public Label summaryText;
-    @FXML public Label dueText;
-    @FXML public TextArea descriptionArea;
-    @FXML public CheckListView<Reminder> reminders;
-    @FXML private CheckListView<Assignment> master;
-    @FXML private ComboBox<AudioResource> notificationSounds;
-    @FXML private Label savedText;
-    @FXML private Label loadFilename;
-    @FXML private HBox calendar;
-    @FXML private MenuItem openMenuItem;
-    @FXML private Button openButton;
-    @FXML private Button editButton;
-    @FXML private Button removeButton;
-    @FXML private Button clearButton;
-    @FXML private Button cancelReminderButton;
+    @FXML
+    public CheckMenuItem militaryTimeCheck;
+    @FXML
+    public CheckMenuItem muteCheck;
+    @FXML
+    public CheckMenuItem autoLoadCheck;
+    @FXML
+    public CheckMenuItem autoNotificationCheck;
+    @FXML
+    public CheckMenuItem autoHideNotifications;
+    @FXML
+    public CheckMenuItem autoHideReminders;
+    @FXML
+    public Label summaryText;
+    @FXML
+    public Label dueText;
+    @FXML
+    public TextArea descriptionArea;
+    @FXML
+    public CheckListView<Reminder> reminders;
+    @FXML
+    private CheckListView<Assignment> master;
+    @FXML
+    private ComboBox<AudioResource> notificationSounds;
+    @FXML
+    private Label savedText;
+    @FXML
+    private Label loadFilename;
+    @FXML
+    private HBox calendar;
+    @FXML
+    private MenuItem openMenuItem;
+    @FXML
+    private Button openButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button removeButton;
+    @FXML
+    private Button clearButton;
+    @FXML
+    private Button cancelReminderButton;
     private WeekView weekView;
     private File loadFile;
     private final SimpleBooleanProperty saved;

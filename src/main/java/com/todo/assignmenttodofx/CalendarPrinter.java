@@ -20,7 +20,7 @@ public class CalendarPrinter {
 
     public static String getTimeString(Calendar calendar, boolean isMilitary) {
         int minInt = calendar.get(Calendar.MINUTE);
-        int hourInt = isMilitary ? calendar.get(Calendar.HOUR_OF_DAY) : (calendar.get(Calendar.HOUR) == 0 ? 12 : calendar.get(Calendar.HOUR) );
+        int hourInt = isMilitary ? calendar.get(Calendar.HOUR_OF_DAY) : (calendar.get(Calendar.HOUR) == 0 ? 12 : calendar.get(Calendar.HOUR));
         String min = minInt < 10 ? "0" + minInt : "" + minInt;
         String hour = hourInt == 0 ? "12" : (hourInt < 10 ? "0" + hourInt : "" + hourInt);
         return "" + hour + (isMilitary ? "" : ":") + min + " "

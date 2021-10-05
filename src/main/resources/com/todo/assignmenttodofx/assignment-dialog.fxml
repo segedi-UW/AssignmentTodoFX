@@ -16,7 +16,7 @@
         </VBox>
     </left>
     <center>
-            <TextArea fx:id="description" promptText="Description"/>
+        <TextArea fx:id="description" promptText="Description"/>
     </center>
     <right>
         <VBox>

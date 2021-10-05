@@ -30,7 +30,8 @@
                 <MenuItem text="Save" onAction="#save" accelerator="Alt+s"/>
                 <MenuItem text="Save As" onAction="#saveAs" accelerator="Alt+a"/>
                 <SeparatorMenuItem/>
-                <MenuItem fx:id="openMenuItem" text="Open Link" onAction="#openLink" disable="true" accelerator="Shortcut+o"/>
+                <MenuItem fx:id="openMenuItem" text="Open Link" onAction="#openLink" disable="true"
+                          accelerator="Shortcut+o"/>
             </Menu>
             <Menu text="Preferences">
                 <CheckMenuItem text="Military Time" fx:id="militaryTimeCheck"/>
@@ -118,7 +119,8 @@
                 <CheckListView fx:id="reminders" orientation="HORIZONTAL" HBox.hgrow="ALWAYS"/>
                 <ToolBar orientation="VERTICAL" minHeight="70" minWidth="80">
                     <Button text="Remind" onAction="#newReminder"/>
-                    <Button fx:id="cancelReminderButton" text="Cancel" onAction="#removeSelectedReminders" disable="true"/>
+                    <Button fx:id="cancelReminderButton" text="Cancel" onAction="#removeSelectedReminders"
+                            disable="true"/>
                 </ToolBar>
             </HBox>
             <HBox fx:id="calendar"/>

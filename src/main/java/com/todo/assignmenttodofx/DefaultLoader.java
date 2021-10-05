@@ -93,7 +93,7 @@ public class DefaultLoader {
     public void loadDefault() {
         File file = Filer.getDefaultFile();
         if (file.exists()) {
-           controller.loadFile(file);
+            controller.loadFile(file);
         }
     }
 

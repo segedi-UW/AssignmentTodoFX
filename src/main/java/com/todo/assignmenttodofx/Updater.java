@@ -29,7 +29,7 @@ public class Updater {
 
     public static Updater updater(Calendar start, Runnable action) {
         Updater updater = new Updater(start, action);
-        updater.setDateIncrementer(current-> current); // does nothing
+        updater.setDateIncrementer(current -> current); // does nothing
         return updater;
     }
 
@@ -40,8 +40,9 @@ public class Updater {
     /**
      * Takes the calendar instance and calculates when midnight occurs and runs the action then.
      * Repeats for each day after as long as the program is running.
+     *
      * @param startDay day to start on
-     * @param action to execute
+     * @param action   to execute
      * @return The updater pending a start() command
      */
     public static Updater dailyUpdater(Calendar startDay, Runnable action) {

@@ -67,7 +67,7 @@ public class ResourceParser<T> {
                     Resource resource = new Resource(name.substring(index + 1), url); // index includes the separator
                     resources.add(resource);
                 } else
-                    System.err.println("Matched with " + resourceName +  " but did not locate");
+                    System.err.println("Matched with " + resourceName + " but did not locate");
             }
         }
         return resources;

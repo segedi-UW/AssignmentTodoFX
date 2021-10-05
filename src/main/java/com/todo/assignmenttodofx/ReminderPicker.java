@@ -13,7 +13,7 @@ public class ReminderPicker extends ToolBar {
 
     public ReminderPicker() {
         super();
-        time = new TimeSpinner(0,30);
+        time = new TimeSpinner(0, 30);
         SpinnerValueFactory<Integer> hours = time.getHours().getValueFactory();
         hours.setWrapAround(false);
         SpinnerValueFactory<Integer> minutes = time.getMinutes().getValueFactory();

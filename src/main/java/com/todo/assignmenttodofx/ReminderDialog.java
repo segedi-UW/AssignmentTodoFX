@@ -12,11 +12,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 
-public class ReminderDialog extends  Dialog<Calendar> {
+public class ReminderDialog extends Dialog<Calendar> {
 
     private final Assignment toRemind;
-    @FXML private TimeSpinner timeSpinner;
-    @FXML private DatePicker datePicker;
+    @FXML
+    private TimeSpinner timeSpinner;
+    @FXML
+    private DatePicker datePicker;
 
     public ReminderDialog(Assignment toRemind) {
         this.toRemind = toRemind;
@@ -40,7 +42,7 @@ public class ReminderDialog extends  Dialog<Calendar> {
         App.addStyleSheet(pane.getScene());
         pane.getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
 
-        Calendar due = (Calendar)toRemind.getCalendar().clone();
+        Calendar due = (Calendar) toRemind.getCalendar().clone();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("reminder-dialog.fxml"));
             loader.setController(this);

@@ -13,14 +13,22 @@ import java.util.Calendar;
 public class AssignmentDialog extends Dialog<Assignment> {
 
     private final Assignment toEdit;
-    @FXML private TextArea description;
-    @FXML private TextField summary;
-    @FXML private DatePicker datePicker;
-    @FXML private TimeSpinner time;
-    @FXML private Button removeCategory;
-    @FXML private CategoryPicker categoryPicker;
-    @FXML private TextField link;
-    @FXML private ReminderPicker reminder;
+    @FXML
+    private TextArea description;
+    @FXML
+    private TextField summary;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private TimeSpinner time;
+    @FXML
+    private Button removeCategory;
+    @FXML
+    private CategoryPicker categoryPicker;
+    @FXML
+    private TextField link;
+    @FXML
+    private ReminderPicker reminder;
 
     public AssignmentDialog() {
         this(null);

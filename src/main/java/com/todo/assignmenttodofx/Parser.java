@@ -52,7 +52,7 @@ public class Parser {
     private static Calendar parseStandardHelper(String time, String meridian) throws InvalidFormatException {
         try {
             Calendar calendar = Calendar.getInstance();
-            checkTimeFormat(new String[] {time, meridian});
+            checkTimeFormat(new String[]{time, meridian});
             String[] parts = time.split(":");
             int hour = Integer.parseInt(parts[0]);
             calendar.set(Calendar.HOUR, hour == 12 ? 0 : hour);

@@ -13,7 +13,7 @@ public class CategoryPicker extends ComboBox<Category> {
         setButtonCell(new Cell());
         ObservableMap<String, Category> categories = Category.getCategories();
         Category standard = categories.get("standard");
-        assert(standard != null);
+        assert (standard != null);
         getItems().addAll(categories.values());
         getSelectionModel().select(standard);
     }

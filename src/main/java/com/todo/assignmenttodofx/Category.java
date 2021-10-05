@@ -115,7 +115,7 @@ public class Category {
     public Color getAlphaOf(double alpha) {
         if (color.isOpaque()) {
             double r = color.getRed(), g = color.getGreen(), b = color.getBlue();
-            return new Color(r,g,b,alpha);
+            return new Color(r, g, b, alpha);
         }
         return color;
     }

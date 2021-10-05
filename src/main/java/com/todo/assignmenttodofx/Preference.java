@@ -45,7 +45,7 @@ public enum Preference {
     }
 
     public void put(Object value) {
-        switch(type) {
+        switch (type) {
             case BOOLEAN:
                 preferences.putBoolean(this.name(), (Boolean) value);
                 break;

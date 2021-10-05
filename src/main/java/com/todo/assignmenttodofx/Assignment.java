@@ -64,7 +64,7 @@ public class Assignment implements Comparable<Assignment> {
     }
 
     private void setUpdate() {
-        Calendar updateTime = (Calendar)due.clone();
+        Calendar updateTime = (Calendar) due.clone();
         updateTime.set(Calendar.SECOND, 0);
         if (updater != null)
             updater.cancel();
@@ -80,16 +80,16 @@ public class Assignment implements Comparable<Assignment> {
     }
 
     private Calendar getUpdateTime(Calendar current) {
-        switch(type) {
+        switch (type) {
             case OVERDUE:
                 // There is nothing after overdue
                 current = null;
                 break;
             case SOON:
-                current = (Calendar)due.clone();
+                current = (Calendar) due.clone();
                 break;
             case STANDARD:
-                current = (Calendar)due.clone();
+                current = (Calendar) due.clone();
                 current.add(Calendar.HOUR_OF_DAY, -SOON_CUTOFF);
                 break;
             default:

@@ -99,7 +99,7 @@ public class TimeSpinner extends HBox implements InvalidationListener {
     }
 
     public interface Converter {
-       void convert(StringProperty top, StringProperty bottom);
+        void convert(StringProperty top, StringProperty bottom);
     }
 
     @Override

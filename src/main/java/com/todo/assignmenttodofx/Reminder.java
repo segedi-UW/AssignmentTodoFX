@@ -58,7 +58,7 @@ public class Reminder {
     public String toString() {
         String time = CalendarPrinter.getTimeString(date);
         String date = CalendarPrinter.getDateString(this.date);
-        return "Reminding on:\n" + date + "\n" + time ;
+        return "Reminding on:\n" + date + "\n" + time;
     }
 
 }

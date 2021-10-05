@@ -13,7 +13,7 @@ public class ErrorAlert extends Alert {
         if (log != null) {
             TextArea area = new TextArea(log);
             area.setWrapText(true);
-           getDialogPane().setExpandableContent(area);
+            getDialogPane().setExpandableContent(area);
         }
     }
 }

@@ -13,7 +13,7 @@ public class AssignmentParser implements Filer.Savable<Assignment>, Filer.Parsab
         List<Assignment> list = new ArrayList<>();
         while (lines.hasNext()) {
             String summary = lines.next();
-            String description =  lines.next();
+            String description = lines.next();
             String date = lines.next();
             Category category = null;
             if (date.indexOf(',') >= 0) {
@@ -37,7 +37,7 @@ public class AssignmentParser implements Filer.Savable<Assignment>, Filer.Parsab
             if (link.equals("null"))
                 link = null;
             Calendar calendar = parseCalendar(date, time);
-            Assignment assignment = new Assignment(summary, calendar, link );
+            Assignment assignment = new Assignment(summary, calendar, link);
             if (category != null)
                 assignment.setCategory(category);
             if (description != null)

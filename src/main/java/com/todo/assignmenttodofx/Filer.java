@@ -18,7 +18,8 @@ public final class Filer {
         List<T> parse(Iterator<String> lines);
     }
 
-    private Filer() {}
+    private Filer() {
+    }
 
     public static File getDefaultFile() {
         return new File(getDirectory(), DEFAULT_FILE);
