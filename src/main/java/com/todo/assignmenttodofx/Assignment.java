@@ -75,7 +75,8 @@ public class Assignment implements Comparable<Assignment> {
 
         if (Preference.AUTO_REMIND.getBoolean()) {
             this.updateTime = getUpdateTime(due);
-            createAutoReminder();
+            if (this.updateTime == null) this.updateTime = updateTime;
+                createAutoReminder();
         }
     }
 

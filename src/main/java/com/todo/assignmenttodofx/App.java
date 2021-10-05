@@ -50,7 +50,7 @@ public class App extends Application {
             boolean failedUpdate = update.equalsIgnoreCase("fail");
             if (failedUpdate) {
                 String log = named.get("updateLog");
-                System.out.println("log: " + log);
+                System.err.println("log: " + log);
                 controller.showError(new IllegalStateException("Update Failed"), "The update process failed", log);
             }
         }
@@ -73,7 +73,6 @@ public class App extends Application {
                             System.out.println("Updating");
                             AppUpdater.update(); // this should kill the program
                         } catch (IOException e) {
-                            System.err.println("Failed to update the jar");
                             controller.showError(e, "Update Failed");
                         }
                 });
@@ -102,7 +101,10 @@ public class App extends Application {
         addStyleSheet(scene);
         setupStage(scene);
         controller = fxmlLoader.getController();
-        if (controller == null) throw new NullPointerException("Could not load main fxml controller");
+        if (controller == null) {
+            System.err.println("Fatal Error - could not load main fxml controller");
+            throw new NullPointerException("Could not load main fxml controller");
+        }
         Thread thread = new Thread(() -> {
             if (!checkUpdate(controller, getParameters()) && controller.isNewInstallation()) {
                 Platform.runLater(() -> {
