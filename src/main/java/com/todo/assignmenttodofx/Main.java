@@ -22,7 +22,7 @@ public class Main {
             FileLock lock = channel.tryLock();
             if (lock != null) {
                 try (PrintStream stream = new PrintStream(logFile)) {
-                    System.setErr(stream);
+                    //System.setErr(stream);
                     System.err.println("Log file start - " + App.VERSION);
                     System.err.println("Started: " + Calendar.getInstance().getTime());
                     stream.flush();
