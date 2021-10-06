@@ -89,6 +89,7 @@ public class AssignmentCell extends CheckBoxListCell<Assignment> implements Chan
             setText("");
             setBorder(null);
             setBackground(null);
+            style.removeIf(name -> name.equals(Style.DONE.style));
         }
     }
 

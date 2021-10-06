@@ -117,6 +117,7 @@ public class AssignmentDialog extends Dialog<Assignment> {
             LocalDate date = LocalDate.of(year, month, dayOfMonth);
             datePicker.setValue(date);
             link.setText(toEdit.getLink());
+            categoryPicker.setValue(toEdit.getCategory());
         }
     }
 

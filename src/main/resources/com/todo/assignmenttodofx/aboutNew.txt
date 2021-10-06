@@ -1,4 +1,15 @@
-<-- 3.6.3 -->
+<-- 3.6.4 --> 10/6/2021
+
+
+* Fix for Struck style remaining
+  in cells after removal
+* Fix for categories not being
+  properly taken into account
+  when editing an existent
+  assignment
+
+
+<-- 3.6.3 --> 10/4/2021
 
 
 * Fix for Application Startup Fault
