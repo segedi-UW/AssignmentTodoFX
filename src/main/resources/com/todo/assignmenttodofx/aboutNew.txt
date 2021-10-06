@@ -1,4 +1,10 @@
-<-- 3.6.4 --> 10/6/2021
+<-- 3.6.5 --> HOTFIX - 10/6/2021
+
+
+* Fix for Description corrupting file if it included a newline
+
+
+<-- 3.6.4 --> Beauty and QoL Fix - 10/5/2021
 
 
 * Fix for Struck style remaining

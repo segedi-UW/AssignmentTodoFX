@@ -13,7 +13,7 @@ public class AssignmentParser implements Filer.Savable<Assignment>, Filer.Parsab
         List<Assignment> list = new ArrayList<>();
         while (lines.hasNext()) {
             String summary = lines.next();
-            String description = lines.next();
+            String description = lineToDescription(lines.next());
             String date = lines.next();
             Category category = null;
             if (date.indexOf(',') >= 0) {
@@ -71,7 +71,7 @@ public class AssignmentParser implements Filer.Savable<Assignment>, Filer.Parsab
             Calendar calendar = a.getCalendar();
             builder.append(a.getSummary());
             builder.append("\n");
-            builder.append(a.getDescription());
+            builder.append(descriptionToLine(a.getDescription()));
             builder.append("\n");
             builder.append(getDateLine(a));
             builder.append(CalendarPrinter.getTimeString(calendar, false)); // always writes to standard time
@@ -90,6 +90,14 @@ public class AssignmentParser implements Filer.Savable<Assignment>, Filer.Parsab
             builder.append("\n");
         }
         writer.append(builder.toString());
+    }
+
+    private String descriptionToLine(String description) {
+        return description.replaceAll("\n", "\\\\n");
+    }
+
+    private String lineToDescription(String line) {
+        return line.replaceAll("\\\\n", "\n");
     }
 
     private static String getDateLine(Assignment a) {
