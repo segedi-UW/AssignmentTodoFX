@@ -54,8 +54,26 @@ public class AssignmentCell extends CheckBoxListCell<Assignment> implements Chan
     @Override
     public void updateItem(Assignment assignment, boolean isEmpty) {
         super.updateItem(assignment, isEmpty);
+        updateStyle(assignment, isEmpty);
+        if (assignment != null && !isEmpty) {
+            double alpha = isSelected() ? 0.2 : 0.1;
+            Category category = assignment.getCategory();
+            Color fill = category.getAlphaOf(alpha);
+            Color borderFill = assignment.getCategory().getColor();
+            setUnderline(isSelected());
+            setBackground(new Background(new BackgroundFill(fill, CornerRadii.EMPTY, Insets.EMPTY)));
+            setBorder(new Border(
+                    new BorderStroke(borderFill, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2.0))));
+        } else {
+            setText("");
+            setBorder(null);
+            setBackground(null);
+        }
+    }
+
+    private void updateStyle(Assignment assignment, boolean isEmpty) {
         ObservableList<String> style = getStyleClass();
-        style.removeIf(name -> name.contains("due")); // This relies on the css elements containing "due" in the name
+        style.removeIf(name -> name.contains("due") || name.contains(Style.DONE.style)); // This relies on the css elements containing "due" in the name
         if (assignment != null && !isEmpty) {
             setText(AssignmentPrinter.getDisplayText(assignment, display));
             String current;
@@ -72,24 +90,11 @@ public class AssignmentCell extends CheckBoxListCell<Assignment> implements Chan
                 default:
                     throw new IllegalStateException("No case in AssignmentCell for " + assignment.getType());
             }
-            double alpha = isSelected() ? 0.2 : 0.1;
-            Category category = assignment.getCategory();
-            Color fill = category.getAlphaOf(alpha);
-            Color borderFill = assignment.getCategory().getColor();
-            setUnderline(isSelected());
-            setBackground(new Background(new BackgroundFill(fill, CornerRadii.EMPTY, Insets.EMPTY)));
-            setBorder(new Border(
-                    new BorderStroke(borderFill, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2.0))));
+
             String doneStyle = Style.DONE.style;
-            if (style.contains(doneStyle)) {
-                style.add(style.size() - 1, current);
-            } else
-                style.add(current);
-        } else {
-            setText("");
-            setBorder(null);
-            setBackground(null);
-            style.removeIf(name -> name.equals(Style.DONE.style));
+            style.add(current);
+            if (checked.get())
+                style.add(doneStyle);
         }
     }
 

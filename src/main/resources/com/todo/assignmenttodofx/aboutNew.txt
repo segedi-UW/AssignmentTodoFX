@@ -1,3 +1,9 @@
+<-- 3.6.6 --> Graphic Fix - 10/7/2021
+
+
+* Fix for strikethrough again
+
+
 <-- 3.6.5 --> HOTFIX - 10/6/2021
 
 
