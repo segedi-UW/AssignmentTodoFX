@@ -1,3 +1,9 @@
+<-- 3.6.7 --> Dedicated Reminder Fix 10/11/2021
+
+
+ * Fix for reminders going off after removing tasks
+
+
 <-- 3.6.6 --> Graphic Fix - 10/7/2021
 
 

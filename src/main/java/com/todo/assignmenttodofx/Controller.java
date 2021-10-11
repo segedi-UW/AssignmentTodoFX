@@ -91,7 +91,6 @@ public class Controller {
             }
             if (sort) master.getItems().sort(null);
         });
-        reminders.setFocusTraversable(false);
         master.getSelectionModel().selectedItemProperty().addListener((obs, oldV, newV) -> {
             boolean isSelection = newV != null;
             boolean hasLink = isSelection && newV.getLink() != null;
@@ -305,6 +304,7 @@ public class Controller {
         ClearAlert alert = new ClearAlert();
         alert.showAndWait().ifPresent(button -> {
             if (button.equals(ButtonType.OK)) {
+                master.getItems().forEach(Assignment::cancel);
                 master.getItems().clear();
                 master.getCheckModel().clearChecks();
                 refresh();
@@ -317,6 +317,7 @@ public class Controller {
     private void removeSelectedTasks() {
         ObservableList<Assignment> checked = master.getCheckModel().getCheckedItems();
         if (checked.size() > 0) {
+            checked.forEach(Assignment::cancel);
             master.getItems().removeAll(checked);
             master.getCheckModel().getCheckedItems();
             master.getCheckModel().clearChecks();
