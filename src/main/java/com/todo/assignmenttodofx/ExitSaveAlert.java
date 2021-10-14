@@ -7,6 +7,7 @@ public class ExitSaveAlert extends Alert {
     public ExitSaveAlert() {
         super(AlertType.CONFIRMATION);
         initOwner(App.getStage());
+        App.addStyleSheet(getDialogPane().getScene());
         setHeaderText("Save before exiting?");
         setContentText("Would you like to save before exiting?");
         setTitle("Save and Exit?");

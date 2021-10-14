@@ -1,4 +1,8 @@
-/*  Initial Comment */
+.root {
+    -fx-base: rgba(30,60, 80, 1);
+    /*-fx-base: rgba(30,130, 50, 1);*/
+}
+
 .text-field:focused {
 	-fx-prompt-text-fill: grey;
 }

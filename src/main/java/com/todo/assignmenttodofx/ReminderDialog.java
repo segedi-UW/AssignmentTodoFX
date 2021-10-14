@@ -22,6 +22,7 @@ public class ReminderDialog extends Dialog<Calendar> {
 
     public ReminderDialog(Assignment toRemind) {
         this.toRemind = toRemind;
+        App.addStyleSheet(getDialogPane().getScene());
         String title = "Create Reminder";
         initOwner(App.getStage());
         setTitle(title);

@@ -50,7 +50,7 @@ public class Category {
 
     public static Category standard() {
         Category category = new Category(STANDARD);
-        category.color = Color.WHITE;
+        category.color = Color.TRANSPARENT;
         category.isUser = false;
         return category;
     }

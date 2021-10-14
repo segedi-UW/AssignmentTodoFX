@@ -8,6 +8,7 @@ public class SaveAlert extends Alert {
     public SaveAlert() {
         super(AlertType.CONFIRMATION);
         initOwner(App.getStage());
+        App.addStyleSheet(getDialogPane().getScene());
         setHeaderText("Save Current File?");
         setContentText("Would you like to save your current assignments?");
         getButtonTypes().clear();

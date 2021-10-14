@@ -7,6 +7,7 @@ public class ErrorAlert extends Alert {
 
     public ErrorAlert(Exception e, String message, String log) {
         super(AlertType.ERROR);
+        App.addStyleSheet(getDialogPane().getScene());
         setHeaderText(e != null ? "Exception Message: " + e.getMessage() : "Non-Exception Error");
         initOwner(App.getStage());
         setContentText(message);

@@ -158,6 +158,7 @@ public class Notification {
     private static class ThresholdAlert extends Alert {
         public ThresholdAlert(String areaText, String header) {
             super(AlertType.INFORMATION);
+            App.addStyleSheet(getDialogPane().getScene());
             setTitle("AssignmentTodo Notifications");
             setHeaderText(header);
             TextArea area = new TextArea(areaText);

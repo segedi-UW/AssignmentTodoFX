@@ -17,6 +17,7 @@ public class CategoryDialog extends Dialog<Category> {
         ObservableList<ButtonType> buttons = getDialogPane().getButtonTypes();
         buttons.clear();
         buttons.addAll(ButtonType.FINISH, ButtonType.CANCEL);
+        App.addStyleSheet(getDialogPane().getScene());
 
         TextField nameField = new TextField();
         nameField.setPromptText("Label");
